@@ -1,0 +1,21 @@
+{% extends "recipes/base.html" %}
+<!-- -->
+{% block content %}
+<h1>Recipes:</h1>
+{% for recipe in recipes %}
+<div class="card my-4">
+  <div class="card-body">
+    <h5 class="card-title">{{ recipe.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ recipe.author }}</h6>
+    <p class="card-text">{{ recipe.description }}</p>
+    <h6 class="card-subtitle mb-2 text-muted">
+      {{ recipe.updated_at|date:"F d, Y" }}
+    </h6>
+    <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link"
+      >View Recipe</a
+    >
+  </div>
+</div>
+{% endfor %}
+<!-- -->
+{% endblock content %}
