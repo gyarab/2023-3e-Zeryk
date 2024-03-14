@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 from . import forms
 
@@ -13,13 +14,17 @@ def register(request):
     form = forms.UserRegisterForm(request.POST)
     if form.is_valid():
       form.save()
-      # cleaned data is a dictionary
       username = form.cleaned_data.get('username')
       messages.success(request, f"{username}, you're account is created, please login.")
       return redirect('user-login')
   else:
     form = forms.UserRegisterForm()
   return render(request, 'users/register.html', {'form': form})
+
+def signout(request):
+    logout(request)
+    messages.success(request,f'You have been logged out.')
+    return redirect('user-login')
 
 @login_required()
 def profile(request):

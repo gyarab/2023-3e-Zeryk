@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
 from . import models
 
 
-#TODO dodelat view_recipe, likes, comments, id_ingridient (vyhledavani podle ingridienci), hodnoceni
+#TODO likes, comments, id_ingridient (vyhledavani podle ingridienci), hodnoceni
 
 
 class RecipeListView(ListView):
