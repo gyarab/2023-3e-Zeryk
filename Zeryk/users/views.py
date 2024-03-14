@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-
+from recipes.models import Recipe
 from . import forms
 
-#TODO profile dodelat, kolik liku, moje recepty, profilovka, recepty ktery jsem likenul
+#TODO dodelat kolik liku mas celkem, profilovka, recepty ktery jsem likenul, (pod profilovkou by se dalo udelat kolik hvezdicek z 5 ma, podle toho jak hodnotili tvuj recept, asi nejakym aritmetickym prumerem)
 
 # Create your views here.
 def register(request):
@@ -21,11 +20,17 @@ def register(request):
     form = forms.UserRegisterForm()
   return render(request, 'users/register.html', {'form': form})
 
-def signout(request):
-    logout(request)
-    messages.success(request,f'You have been logged out.')
-    return redirect('user-login')
+
+def logout(request):
+  logout(request)
+  return redirect('user-login')
 
 @login_required()
 def profile(request):
   return render(request, 'users/profile.html')
+
+def profile(request):
+  user = request.user
+  recipes = Recipe.objects.filter(author=user)
+  return render(request, 'users/profile.html', {'recipes': recipes})
+

@@ -7,7 +7,13 @@
   <div class="card-body">
     <h5 class="card-title">{{ recipe.title }}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{ recipe.author }}</h6>
-    <p class="card-text">{{ recipe.description }}</p>
+    <h6>Ingredients:</h6>
+    <ul>
+      {% for ingredient in object.ingredients.all %}
+      <li>{{ ingredient.name }}</li>
+      {% endfor %}
+    </ul>
+    <p class="card-text">Instructions: {{ recipe.description }}</p>
     <h6 class="card-subtitle mb-2 text-muted">
       {{ recipe.updated_at|date:"F d, Y" }}
     </h6>

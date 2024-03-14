@@ -1,12 +1,19 @@
 {% extends "recipes/base.html" %}
 <!-- -->
 {% block content %}
-<h1>Recipe # {{object.id}}</h1>
+<h1>Recipe # {{ object.id }}</h1>
 <div class="card my-4">
   <div class="card-body">
-    <h5 class="card-title">{{ object.title }}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
-    <p class="card-text">{{ object.description }}</p>
+    <h5 class="card-title">{{ object.title }}</h5>
+    <h6>Ingredients:</h6>
+    <ul>
+      {% for ingredient in object.ingredients.all %}
+      <li>{{ ingredient.name }}</li>
+      {% endfor %}
+    </ul>
+
+    <p class="card-text">Instructions: {{ object.description }}</p>
     <h6 class="card-subtitle mb-2 text-muted">
       {{ object.updated_at|date:"F d, Y" }}
     </h6>

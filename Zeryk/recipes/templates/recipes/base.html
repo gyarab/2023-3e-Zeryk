@@ -53,7 +53,11 @@
           <a class="nav-item nav-link" href="{% url 'user-profile' %}"
             >My Profile</a
           >
-          <a class="nav-item nav-link" href="{% url 'user-logout' %}">Logout</a>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Logout</button>
+          </form>
+
           {% else %}
           <a class="nav-item nav-link" href="{% url 'user-login' %}">Login</a>
           <a class="nav-item nav-link" href="{% url 'user-register' %}"
