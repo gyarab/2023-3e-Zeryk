@@ -28,7 +28,53 @@
     >Delete</a
   >
 </div>
+<br/>
+  <hr>
+  <br/>
 
+  <form action="{% url 'like_post' post.pk %}"
+        method = "POST">
+          {% csrf_token %}
+
+  {% if user.is_authenticated %}
+      {% if liked %}
+          <button type="submit",
+          name="post_id",
+          value="{{ post.id }}",
+          class="btn btn-danger btn-sm">Unlike</button>
+
+      {% else %}
+          <button type="submit",
+          name="post_id",
+          value="{{ post.id }}",
+          class="btn btn-primary btn-sm">Like</button>
+
+      {% endif %}
+  {% else %}
+      <small><a href="{% url 'user-login' %}">Login</a> to like</small>
+  {% endif %}
+      - {{ total_likes }} Likes
+  </form>
+
+<br>
+<h2>Comments</h2>
+
+{% if not post.comments.all %}
+  No comments yet...<a href ="#"> Add one</a>
+{% else %}
+<a href="">Add Comment</a>
+<br/>
+  {% for comment in post.comments.all %}
+    <strong>
+      {{ comment.name }} - {{ comment.created_on }}
+    </strong>
+    <br>
+    {{comment.body}}
+  {% endfor %}
+{% endif %}
+
+
+</div>
 {% endif %}
 <!-- -->
 {% endblock content %}

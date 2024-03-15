@@ -1,3 +1,4 @@
 django
 django-crispy-forms
+crispy-bootstrap4
 Pillow
