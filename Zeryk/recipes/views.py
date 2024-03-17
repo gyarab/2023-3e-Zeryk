@@ -8,11 +8,11 @@ from django.urls import reverse, reverse_lazy
 from . import models
 from .forms import IngredientForm, CommentForm
 
-#TODO cas vareni + filtrovani pomoci casu, likes, comments, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??), delete recipe
+#TODO delete recipe, cas vareni + filtrovani pomoci casu, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??)
 
 
-def LikeView(request, pk):
-  post = get_object_or_404(models.Recipe, id=request.POST.get('post_id'))
+def like(request, pk):
+  post = get_object_or_404(models.Recipe, id=request.POST.get('object_id'))
   liked = False
   if post.likes.filter(id=request.user.id).exists():
       post.likes.remove(request.user)
@@ -21,12 +21,7 @@ def LikeView(request, pk):
       post.likes.add(request.user)
       liked = True
 
-  return HttpResponseRedirect(reverse('recipe-detail', args=[str(pk)]))
-
-class RecipeListView(ListView):
-  model = models.Recipe
-  template_name = 'recipes/home.html'
-  context_object_name = 'recipes'
+  return HttpResponseRedirect(reverse('recipes-detail', args=[str(pk)]))
 
 def home(request):
   recipes = models.Recipe.objects.all()
@@ -38,6 +33,10 @@ def home(request):
 def about(request):
   return render(request, 'recipes/about.html', {'title': 'about page'})
 
+class RecipeListView(ListView):
+  model = models.Recipe
+  template_name = 'recipes/home.html'
+  context_object_name = 'recipes'
 
 class RecipeDetailView(DetailView):
   model = models.Recipe
@@ -60,12 +59,14 @@ class RecipeDetailView(DetailView):
 class AddCommentView(CreateView):
     model = models.Comment
     form_class = CommentForm
-    template_name = 'add_comment.html'
+    template_name = 'recipes/add_comment.html'
+    
     def form_valid(self, form):
-        form.instance.post_id = self.kwargs['pk']
+        form.instance.post = models.Recipe.objects.get(pk=self.kwargs.get("pk"))
+        form.instance.name = self.request.user
         return super().form_valid(form)
 
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('recipes-home')
 
 class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
   model = models.Recipe
@@ -95,15 +96,14 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form.instance.author = self.request.user
     return super().form_valid(form)
 
-def add_ingredient_to_recipe(request, recipe_id):
+#def add_ingredient_to_recipe(request, recipe_id):
     if request.method == 'POST':
         form = IngredientForm(request.POST)
         if form.is_valid():
             ingredient = form.save()
-            # Предполагается, что у вас есть объект рецепта с идентификатором recipe_id
             recipe = models.Recipe.objects.get(pk=recipe_id)
             recipe.ingredients.add(ingredient)
-            return redirect('recipe_detail', pk=recipe_id)  # Замените на ваш URL для просмотра рецепта
+            return redirect('recipe/recipe_detail', pk=recipe_id) 
     else:
         form = IngredientForm()
     return render(request, 'add_ingredient_to_recipe.html', {'form': form})

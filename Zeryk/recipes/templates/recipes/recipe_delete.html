@@ -1,26 +1,31 @@
 {% extends "recipes/base.html" %}
 <!-- -->
-{% extends "recipes/base.html" %}
-<!-- -->
 {% load crispy_forms_tags %}
 <!-- -->
 {% block content %}
-<div class="container">
-  <form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      <legend class="mb-4">Are you sure you want to delete?</legend>
-      <h2>{{object}}</h2>
-      {{ form|crispy }}
-    </fieldset>
-    <div class="form-group py-3">
-      <input class="btn btn-outline-danger" type="submit" value="Delete" />
-    </div>
-  </form>
-  <div class="border-top pt-3">
-    <a class="text-muted" href="{% url 'recipes-home' %}">Cancel</a>
-  </div>
-</div>
+{% if user.is_authenticated %}
+	{% if user.id == object.author.id %}
+		<h1>Delete Post...</h1>
+		<br/><br/>
+		<h3>Delete: {{ object.title }}</h3>
+
+		<br/>
+		<div class="form-group">
+			<form method="POST">
+				{% csrf_token %}
+				<strong>Are you sure?!</strong><br/><br/>
+				<button class="btn btn-secondary">Delete Post!</button>
+		</div>
+		{% else %}
+			You're not allowed here! (and you know it...)
+		{% endif %}
+
+{% else %}
+
+You're not allowed here! (and you know it...)
+
+{% endif %}
+
 
 <!-- -->
 {% endblock content %}

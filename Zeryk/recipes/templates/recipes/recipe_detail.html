@@ -1,80 +1,79 @@
 {% extends "recipes/base.html" %}
 <!-- -->
 {% block content %}
-<h1>Recipe # {{ object.id }}</h1>
-<div class="card my-4">
-  <div class="card-body">
-    <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
-    <h5 class="card-title">{{ object.title }}</h5>
-    <h6>Ingredients:</h6>
-    <ul>
-      {% for ingredient in object.ingredients.all %}
-      <li>{{ ingredient.name }}</li>
-      {% endfor %}
-    </ul>
+  <h1>{{ object.title }}</h1>
+  <div class="card my-4">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
+      <h5 class="card-title">{{ object.title }}</h5>
+      <h6>Ingredients:</h6>
+      <ul>
+        {% for ingredient in object.ingredients.all %}
+        <li>{{ ingredient.name }}</li>
+        {% endfor %}
+      </ul>
 
-    <p class="card-text">Instructions: {{ object.description }}</p>
-    <h6 class="card-subtitle mb-2 text-muted">
-      {{ object.updated_at|date:"F d, Y" }}
-    </h6>
+      <p class="card-text">Instructions: {{ object.description }}</p>
+      <h6 class="card-subtitle mb-2 text-muted">
+        {{ object.updated_at|date:"F d, Y" }}
+      </h6>
+    </div>
   </div>
-</div>
-{% if object.author == user or user.is_staff %}
-<div class="col-4">
-  <a class="btn btn-outline-info" href="{% url 'recipes-update' object.id %}"
-    >Update</a
-  >
-  <a class="btn btn-outline-danger" href="{% url 'recipes-delete' object.id %}"
-    >Delete</a
-  >
-</div>
-<br/>
-  <hr>
+  {% if object.author == user or user.is_staff %}
+  <div class="col-4">
+    <a class="btn btn-outline-info" href="{% url 'recipes-update' object.id %}"
+      >Update</a
+    >
+    <a class="btn btn-outline-danger" href="{% url 'recipes-delete' object.id %}"
+      >Delete</a
+    >
+  </div>
   <br/>
-
-  <form action="{% url 'like_post' post.pk %}"
-        method = "POST">
-          {% csrf_token %}
-
+  <hr>
+  
+  <form action="{% url 'like_post' object.pk %}"method = "POST">
+    {% csrf_token %}
+    
   {% if user.is_authenticated %}
-      {% if liked %}
-          <button type="submit",
-          name="post_id",
-          value="{{ post.id }}",
-          class="btn btn-danger btn-sm">Unlike</button>
+    {% if liked %}
+      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-danger btn-sm">Unlike</button> 
+    {% else %}	
+      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-primary btn-sm">Like</button> 
 
-      {% else %}
-          <button type="submit",
-          name="post_id",
-          value="{{ post.id }}",
-          class="btn btn-primary btn-sm">Like</button>
-
-      {% endif %}
+    {% endif %}
   {% else %}
-      <small><a href="{% url 'user-login' %}">Login</a> to like</small>
+    <small><a href="{% url 'login' %}">Login</a> to like</small>
   {% endif %}
-      - {{ total_likes }} Likes
+    
+    - {{ total_likes }} Likes
   </form>
 
-<br>
+  <br>
 <h2>Comments</h2>
-
-{% if not post.comments.all %}
-  No comments yet...<a href ="#"> Add one</a>
-{% else %}
-<a href="">Add Comment</a>
 <br/>
-  {% for comment in post.comments.all %}
-    <strong>
-      {{ comment.name }} - {{ comment.created_on }}
-    </strong>
-    <br>
-    {{comment.body}}
-  {% endfor %}
-{% endif %}
+{% if not object.comments.all %}
+  No Comments Yet...<a href="{% url 'add_comment' object.pk %}">Add One</a>
+{% else %}
 
+<a href="{% url 'add_comment' object.pk %}">Add Comment</a>
+<br/><br/>
+
+  {% for comment in object.comments.all %}
+    <strong>
+      {{ comment.name }} - 
+      {{ comment.date_added }}
+    </strong>
+    <br/>
+    {{ comment.body }}
+    <br/><br/>
+    
+  
+  {% endfor %}
+    <a href="{% url 'add_comment' object.pk %}"></a>
+{% endif %}
+<br/>
 
 </div>
-{% endif %}
+  {% endif %}
 <!-- -->
 {% endblock content %}
