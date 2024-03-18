@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 from . import models
 from .forms import IngredientForm, CommentForm
 
-#TODO delete recipe, cas vareni + filtrovani pomoci casu, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??)
+#TODO cas vareni + filtrovani pomoci casu, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??)
 
 
 def like(request, pk):
