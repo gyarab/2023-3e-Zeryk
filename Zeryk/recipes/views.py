@@ -7,8 +7,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from . import models
 from .forms import IngredientForm, CommentForm
+import requests
 
-#TODO cas vareni + filtrovani pomoci casu, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??)
+#TODO delete comment, cas vareni + filtrovani pomoci casu, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??)
+
 
 
 def like(request, pk):
@@ -83,6 +85,25 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.author = self.request.user
     return super().form_valid(form)
+  
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    query = self.request.GET.get('query')
+    if query:
+        api_key = '095ec31de9614bf9a4c4a442386741e5'
+        endpoint = 'https://api.spoonacular.com/food/ingredients/search'
+        params = {
+            'apiKey': api_key,
+            'query': query,
+            'number': 10  # Number of ingredients to retrieve
+        }
+        response = requests.get(endpoint, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            context['ingredients'] = data['results']
+        else:
+            context['error'] = 'Failed to retrieve ingredients'
+    return context
 
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
   model = models.Recipe

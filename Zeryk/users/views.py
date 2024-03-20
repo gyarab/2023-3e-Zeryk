@@ -7,7 +7,6 @@ from . import forms
 
 #TODO dodelat kolik liku mas celkem, profilovka, recepty ktery jsem likenul, (pod profilovkou by se dalo udelat kolik hvezdicek z 5 ma, podle toho jak hodnotili tvuj recept, asi nejakym aritmetickym prumerem)
 
-# Create your views here.
 def register(request):
   if request.method == "POST":
     form = forms.UserRegisterForm(request.POST)

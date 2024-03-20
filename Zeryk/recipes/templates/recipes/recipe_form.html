@@ -1,7 +1,59 @@
+
 {% extends "recipes/base.html" %}
-<!-- -->
 {% load crispy_forms_tags %}
-<!-- -->
+
+
+{% block scripts %}
+<script>
+  function searchIngredients() {
+    const query = document.getElementById('ingredient-search').value;
+    fetch(`/search-ingredients/?query=${query}`)
+      .then(response => response.json())
+      .then(data => {
+        const ingredientResults = document.getElementById('ingredient-results');
+        ingredientResults.innerHTML = '';
+        if (data.ingredients) {
+          const ul = document.createElement('ul');
+          data.ingredients.forEach(ingredient => {
+            const li = document.createElement('li');
+            li.textContent = ingredient.name;
+            // Add a button to select the ingredient
+            const selectButton = document.createElement('button');
+            selectButton.textContent = 'Select';
+            selectButton.onclick = function() {
+              selectIngredient(ingredient.name);
+            };
+            li.appendChild(selectButton);
+            ul.appendChild(li);
+          });
+          ingredientResults.appendChild(ul);
+        } else if (data.error) {
+          const p = document.createElement('p');
+          p.textContent = data.error;
+          ingredientResults.appendChild(p);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+  // Function to add the selected ingredient to the list of selected ingredients
+  function selectIngredient(ingredientName) {
+    const selectedIngredients = document.getElementById('selected-ingredients');
+    const li = document.createElement('li');
+    li.textContent = ingredientName;
+    selectedIngredients.appendChild(li);
+    // You can also add hidden input fields to store the selected ingredients in the form
+    // For example:
+    // const input = document.createElement('input');
+    // input.type = 'hidden';
+    // input.name = 'ingredients';
+    // input.value = ingredientName;
+    // li.appendChild(input);
+  }
+</script>
+{% endblock scripts %}
+
+
 {% block content %}
 <div class="container">
   <form method="POST">
@@ -11,25 +63,24 @@
       {{ form|crispy }}
     </fieldset>
 
-    <!-- Поле для добавления ингредиента -->
-    <div class="form-group">
-      <h4>Add Ingredient</h4>
-      <input
-        type="text"
-        name="ingredient"
-        placeholder="Enter ingredient"
-        class="form-control"
-        required />
-    </div>
+    <!-- Ingredient search section -->
+    <h2>Search Ingredients</h2>
+    <input type="text" name="query" id="ingredient-search" placeholder="Search ingredients...">
+    <button type="button" onclick="searchIngredients()">Search</button>
+    <div id="ingredient-results"></div>
 
+    <!-- Selected ingredients section -->
+    <h2>Selected Ingredients</h2>
+    <ul id="selected-ingredients"></ul>
+
+    <!-- Button to submit the form -->
     <div class="form-group py-3">
-      <input class="btn btn-outline-primary" type="submit" value="Save" />
+      <input class="btn btn-outline-primary" type="submit" value="Save Recipe" />
     </div>
   </form>
   <div class="border-top pt-3">
     <a class="text-muted" href="{% url 'recipes-home' %}">Cancel</a>
   </div>
 </div>
-
-<!-- -->
 {% endblock content %}
+
