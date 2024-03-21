@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'recipes',
     'users',
     'crispy_forms',
-    'crispy_bootstrap4',
-    'djrichtextfield'
+    'crispy_bootstrap4'
 ]
 
 

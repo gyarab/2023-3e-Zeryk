@@ -86,24 +86,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     form.instance.author = self.request.user
     return super().form_valid(form)
   
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    query = self.request.GET.get('query')
-    if query:
-        api_key = '095ec31de9614bf9a4c4a442386741e5'
-        endpoint = 'https://api.spoonacular.com/food/ingredients/search'
-        params = {
-            'apiKey': api_key,
-            'query': query,
-            'number': 10  # Number of ingredients to retrieve
-        }
-        response = requests.get(endpoint, params=params)
-        if response.status_code == 200:
-            data = response.json()
-            context['ingredients'] = data['results']
-        else:
-            context['error'] = 'Failed to retrieve ingredients'
-    return context
+  
 
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
   model = models.Recipe
@@ -117,15 +100,4 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form.instance.author = self.request.user
     return super().form_valid(form)
 
-#def add_ingredient_to_recipe(request, recipe_id):
-    if request.method == 'POST':
-        form = IngredientForm(request.POST)
-        if form.is_valid():
-            ingredient = form.save()
-            recipe = models.Recipe.objects.get(pk=recipe_id)
-            recipe.ingredients.add(ingredient)
-            return redirect('recipe/recipe_detail', pk=recipe_id) 
-    else:
-        form = IngredientForm()
-    return render(request, 'add_ingredient_to_recipe.html', {'form': form})
 
