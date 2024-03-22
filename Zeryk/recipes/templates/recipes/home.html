@@ -1,7 +1,6 @@
-{% extends "recipes/base.html" %}
+{% extends "recipes/box.html" %}
 <!-- -->
 {% block content %}
-<h1>Recipes:</h1>
 {% for recipe in recipes %}
 <div class="card my-4">
   <div class="card-body">
@@ -17,9 +16,7 @@
     <h6 class="card-subtitle mb-2 text-muted">
       {{ recipe.updated_at|date:"F d, Y" }}
     </h6>
-    <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link"
-      >View Recipe</a
-    >
+    <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link no-style">View Recipe</a>
   </div>
 </div>
 {% endfor %}

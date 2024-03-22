@@ -1,0 +1,37 @@
+.nav-box-wrapper {
+    width: 33.33%;
+    float: left;
+    position: relative;
+    height: 100vh;
+}
+
+.nav-box-cent {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navigation-box {
+    position: fixed;
+    top: 50%;
+    left: 2%;
+    transform: translateY(-50%);
+    width: 10%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    border: 1px solid gainsboro;
+    padding: 20px;
+    text-align: center;
+}
+
+.card {
+    background-color: whitesmoke;
+}
+
+.no-style {
+    text-decoration: none;
+    color: inherit;
+}
