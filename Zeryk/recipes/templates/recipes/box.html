@@ -1,0 +1,42 @@
+{% extends "recipes/base.html" %}
+
+{% block 'box' %}
+<div class="nav-box-wrapper">
+    <div class="navigation-box nav-box-cent mx-auto">
+        <div class="text-center">
+            <a class="d-block mb-3 no-style" href="{% url 'recipes-home' %}">
+                <i class="fas fa-home fa-lg"></i>
+                <span class="d-block">Home</span>
+            </a>
+            <a class="d-block mb-3 no-style" href="{% url 'recipes-about' %}">
+                <i class="fas fa-info-circle fa-lg"></i>
+                <span class="d-block">About</span>
+            </a>
+            <a class="d-block mb-3 no-style" href="{% url 'recipes-create' %}">
+                <i class="fas fa-plus-circle fa-lg"></i>
+                <span class="d-block">Add Recipe</span>
+            </a>
+            {% if user.is_authenticated %}
+            <a class="d-block mb-3 no-style" href="{% url 'user-profile' %}">
+                <i class="fas fa-user fa-lg"></i>
+                <span class="d-block">My Profile</span>
+            </a>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="btn btn-link no-style" type="submit"><i class="fas fa-sign-out-alt fa-lg"></i></button>
+            </form>
+            {% else %}
+            <a class="d-block mb-3 no-style" href="{% url 'user-login' %}">
+                <i class="fas fa-sign-in-alt fa-lg"></i>
+                <span class="d-block">Login</span>
+            </a>
+            <a class="d-block mb-3 no-style" href="{% url 'user-register' %}">
+                <i class="fas fa-user-plus fa-lg"></i>
+                <span class="d-block">Register</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
