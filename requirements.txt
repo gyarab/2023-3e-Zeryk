@@ -3,3 +3,5 @@ django-crispy-forms
 crispy-bootstrap4
 Pillow
 requests
+django-richtextfield
+django-tinymce

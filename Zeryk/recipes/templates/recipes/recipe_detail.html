@@ -13,7 +13,7 @@
         {% endfor %}
       </ul>
 
-      <p class="card-text">Instructions: {{ object.description }}</p>
+      <p class="card-text">Instructions: {{ object.description|safe }}</p>
       <h6 class="card-subtitle mb-2 text-muted">
         {{ object.updated_at|date:"F d, Y" }}
       </h6>
@@ -30,7 +30,7 @@
   </div>
   <br/>
   <hr>
-  
+    
   <form action="{% url 'like_post' object.pk %}"method = "POST">
     {% csrf_token %}
     

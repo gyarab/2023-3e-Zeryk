@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-from djrichtextfield.models import RichTextField
+from ckeditor.fields import RichTextField 
 
 #TODO dodelat pridat ingridients, pole, vytvareni pole, databaze, nejak spojit
 
@@ -13,7 +13,7 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
   title = models.CharField(max_length=100)
-  description = RichTextField()
+  description = RichTextField(blank=True, null=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
