@@ -4,4 +4,4 @@ crispy-bootstrap4
 Pillow
 requests
 django-richtextfield
-django-tinymce
+django-ckeditor
