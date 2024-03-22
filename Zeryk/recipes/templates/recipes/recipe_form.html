@@ -44,11 +44,11 @@
     selectedIngredients.appendChild(li);
     // You can also add hidden input fields to store the selected ingredients in the form
     // For example:
-    // const input = document.createElement('input');
-    // input.type = 'hidden';
-    // input.name = 'ingredients';
-    // input.value = ingredientName;
-    // li.appendChild(input);
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'ingredients';
+    input.value = ingredientName;
+    li.appendChild(input);
   }
 </script>
 {% endblock scripts %}
