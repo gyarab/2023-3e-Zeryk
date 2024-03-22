@@ -17,7 +17,7 @@
           <li>{{ ingredient.name }}</li>
           {% endfor %}
         </ul>
-        <p class="card-text">Instructions: {{ recipe.description }}</p>
+        <p class="card-text">Instructions: {{ recipe.description | safe }}</p>
         <h6 class="card-subtitle mb-2 text-muted">
           {{ recipe.updated_at|date:"F d, Y" }}
         </h6>

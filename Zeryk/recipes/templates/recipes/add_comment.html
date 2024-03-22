@@ -9,7 +9,7 @@
 
 <div class="form-group">
   <form method="POST">
-    {% csrf_token %} {{ form.as_p }}
+    {% csrf_token %} {{ form.as_p }} {{ form.media }}
     <button class="btn btn-secondary">Add Comment</button>
   </form>
 </div>
