@@ -1,25 +1,27 @@
 {% extends "recipes/base.html" %}
+{% load static %}
+{% load i18n %}
 
 {% block 'box' %}
 <div class="nav-box-wrapper">
-    <div class="navigation-box nav-box-cent mx-auto">
+    <div class="navigation-box">
         <div class="text-center">
             <a class="d-block mb-3 no-style" href="{% url 'recipes-home' %}">
                 <i class="fas fa-home fa-lg"></i>
-                <span class="d-block">Home</span>
+                <span class="d-block">{% trans "Home" %}</span>
             </a>
             <a class="d-block mb-3 no-style" href="{% url 'recipes-about' %}">
                 <i class="fas fa-info-circle fa-lg"></i>
-                <span class="d-block">About</span>
+                <span class="d-block">{% trans "About" %}</span>
             </a>
             <a class="d-block mb-3 no-style" href="{% url 'recipes-create' %}">
                 <i class="fas fa-plus-circle fa-lg"></i>
-                <span class="d-block">Add Recipe</span>
+                <span class="d-block">{% trans "Add Recipe" %}</span>
             </a>
             {% if user.is_authenticated %}
             <a class="d-block mb-3 no-style" href="{% url 'user-profile' %}">
                 <i class="fas fa-user fa-lg"></i>
-                <span class="d-block">My Profile</span>
+                <span class="d-block">{% trans "My Profile" %}</span>
             </a>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
@@ -28,14 +30,41 @@
             {% else %}
             <a class="d-block mb-3 no-style" href="{% url 'user-login' %}">
                 <i class="fas fa-sign-in-alt fa-lg"></i>
-                <span class="d-block">Login</span>
+                <span class="d-block">{% trans "Login" %}</span>
             </a>
             <a class="d-block mb-3 no-style" href="{% url 'user-register' %}">
                 <i class="fas fa-user-plus fa-lg"></i>
-                <span class="d-block">Register</span>
+                <span class="d-block">{% trans "Register" %}</span>
             </a>
             {% endif %}
         </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if LANGUAGE_CODE == 'en' %}
+                    <img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English
+                {% elif LANGUAGE_CODE == 'cs' %}
+                    <img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština
+                {% endif %}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                {% if LANGUAGE_CODE != 'en' %}
+                    <a class="dropdown-item" href="{% url 'set_language' %}?language=en"><img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English</a>
+                {% endif %}
+                {% if LANGUAGE_CODE != 'cs' %}
+                    <a class="dropdown-item" href="{% url 'set_language' %}?language=cz"><img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština</a>
+                {% endif %}
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Language
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'set_language' %}?language=en">English</a></li>
+                  <li><a class="dropdown-item" href="{% url 'set_language' %}?language=cz">Česky</a></li>
+                </ul>
+            </div>
+        </div>               
     </div>
 </div>
 

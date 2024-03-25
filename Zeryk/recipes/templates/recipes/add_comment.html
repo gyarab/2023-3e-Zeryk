@@ -1,16 +1,17 @@
 {% extends 'recipes/base.html' %}
+{% load i18n %}
 <!-- -->
-{% block title %}Comment {% endblock %}
+{% block title %}{% trans "Comment" %} {% endblock %}
 <!-- -->
 {% block content %}
 
-<h1>Add Comment...</h1>
+<h1>{% trans "Add Comment" %}...</h1>
 <br /><br />
 
 <div class="form-group">
   <form method="POST">
     {% csrf_token %} {{ form.as_p }} {{ form.media }}
-    <button class="btn btn-secondary">Add Comment</button>
+    <button class="btn btn-secondary">{% trans "Add Comment" %}</button>
   </form>
 </div>
 

@@ -1,6 +1,7 @@
 
 {% extends "recipes/box.html" %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 
 {% block scripts %}
@@ -58,29 +59,29 @@
 <div class="container">
   <form method="POST">
     <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Add Recipe</legend>
+      <legend class="border-bottom mb-4">{% trans "Add Recipe" %}</legend>
     </fieldset>
     {% csrf_token %}
     {{ form.media }}
     {{ form.as_p }}
   
     <!-- Ingredient search section -->
-    <h2>Search Ingredients</h2>
-    <input type="text" name="query" id="ingredient-search" placeholder="Search ingredients...">
-    <button type="button" onclick="searchIngredients()">Search</button>
+    <h2>{% trans "Search Ingredients" %}</h2>
+    <input type="text" name="query" id="ingredient-search" placeholder="{% trans "Search ingredients..." %}">
+    <button type="button" onclick="searchIngredients()">{% trans "Search" %}</button>
     <div id="ingredient-results"></div>
 
     <!-- Selected ingredients section -->
-    <h2>Selected Ingredients</h2>
+    <h2>{% trans "Selected Ingredients" %}</h2>
     <ul id="selected-ingredients"></ul>
 
     <!-- Button to submit the form -->
     <div class="form-group py-3">
-      <input class="btn btn-outline-primary" type="submit" value="Save Recipe" />
+      <input class="btn btn-outline-primary" type="submit" value="{% trans "Save Recipe" %}" />
     </div>
   </form>
   <div class="border-top pt-3">
-    <a class="text-muted" href="{% url 'recipes-home' %}">Cancel</a>
+    <a class="text-muted" href="{% url 'recipes-home' %}">{% trans "Cancel" %}</a>
   </div>
 </div>
 {% endblock content %}

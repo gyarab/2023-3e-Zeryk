@@ -1,29 +1,18 @@
 .nav-box-wrapper {
-    width: 33.33%;
-    float: left;
-    position: relative;
-    height: 100vh;
-}
-
-.nav-box-cent {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 50%;
-    right: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.navigation-box {
     position: fixed;
-    top: 50%;
-    left: 2%;
-    transform: translateY(-50%);
-    width: 10%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
     background-color: whitesmoke;
     border-radius: 10px;
     border: 1px solid gainsboro;
     padding: 20px;
+    margin: 20px;
+    overflow-y: auto;
+}
+
+.navigation-box {
     text-align: center;
 }
 

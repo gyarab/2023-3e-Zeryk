@@ -1,13 +1,14 @@
 {% extends "recipes/base.html" %}
 <!-- -->
 {% load crispy_forms_tags %}
+{% load i18n %}
 <!-- -->
 {% block content %}
 <div class="container">
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Sign Up!</legend>
+      <legend class="border-bottom mb-4">{% trans "Sign Up" %}!</legend>
       {{ form|crispy }}
     </fieldset>
     <div class="form-group py-3">
@@ -15,7 +16,7 @@
     </div>
   </form>
   <div class="border-top pt-3">
-    <a class="text-muted" href="#">Already have an account? Log in.</a>
+    <a class="text-muted" href="#">{% trans "Already have an account? Log in." %}</a>
   </div>
 </div>
 

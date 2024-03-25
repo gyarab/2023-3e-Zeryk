@@ -1,4 +1,5 @@
 {% extends "recipes/box.html" %}
+{% load i18n %}
 <!-- -->
 {% block content %}
   <h1>{{ object.title }}</h1>
@@ -6,14 +7,14 @@
     <div class="card-body">
       <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
       <h5 class="card-title">{{ object.title }}</h5>
-      <h6>Ingredients:</h6>
+      <h6>{% trans "Ingredients:" %}</h6>
       <ul>
         {% for ingredient in object.ingredients.all %}
         <li>{{ ingredient.name }}</li>
         {% endfor %}
       </ul>
 
-      <p class="card-text">Instructions: {{ object.description|safe }}</p>
+      <p class="card-text">{% trans "Instructions:" %}} {{ object.description|safe }}</p>
       <h6 class="card-subtitle mb-2 text-muted">
         {{ object.updated_at|date:"F d, Y" }}
       </h6>
@@ -22,10 +23,10 @@
   {% if object.author == user or user.is_staff %}
   <div class="col-4">
     <a class="btn btn-outline-info" href="{% url 'recipes-update' object.id %}"
-      >Edit</a
+      >{% trans "Edit" %}</a
     >
     <a class="btn btn-outline-danger" href="{% url 'recipes-delete' object.id %}"
-      >Delete</a
+      >{% trans "Delete" %}</a
     >
   </div>
   <br/>
@@ -36,26 +37,26 @@
     
   {% if user.is_authenticated %}
     {% if liked %}
-      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-danger btn-sm">Unlike</button> 
+      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-danger btn-sm">{% trans "Unlike" %}</button> 
     {% else %}	
-      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-primary btn-sm">Like</button> 
+      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-primary btn-sm">{% trans "Like" %}</button> 
 
     {% endif %}
   {% else %}
-    <small><a href="{% url 'login' %}">Login</a> to like</small>
+    <small><a href="{% url 'login' %}">{% trans "Login" %}</a> {% trans "to like" %}</small>
   {% endif %}
     
-    - {{ total_likes }} Likes
+    - {{ total_likes }} {% trans "Likes" %}
   </form>
 
   <br>
-<h2>Comments</h2>
+<h2>{% trans "Comments" %}</h2>
 <br/>
 {% if not object.comments.all %}
-  No Comments Yet...<a href="{% url 'add_comment' object.pk %}">Add One</a>
+  {% trans "No Comments Yet..." %}<a href="{% url 'add_comment' object.pk %}">{% trans "Add one" %}</a>
 {% else %}
 
-<a href="{% url 'add_comment' object.pk %}">Add Comment</a>
+<a href="{% url 'add_comment' object.pk %}">{% trans "Add Comment" %}</a>
 <br/><br/>
 
   {% for comment in object.comments.all %}

@@ -1,21 +1,22 @@
 {% extends "recipes/box.html" %}
+{% load i18n %}
 <!-- -->
 {% block content %}
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2 text-center">
-      <h1 class="display-4">Welcome to Our Social Recipe Sharing Network!</h1>
-      <p class="lead">Are you passionate about cooking and love sharing your culinary creations with others? Or perhaps you're in search of inspiration for your next meal?</p>
-      <p class="lead">Look no further! Our social network is designed for food enthusiasts like you to connect, share, and discover delicious recipes from around the world.</p>
-      <p class="lead">Whether you're a seasoned chef or a novice in the kitchen, our platform offers a seamless experience for sharing your favorite recipes or finding new ones to try.</p>
-      <h2 class="mt-5">Key Features:</h2>
+      <h1 class="display-4">{% trans "Welcome to Our Social Recipe Sharing Network!" %}</h1>
+      <p class="lead">{% trans "Are you passionate about cooking and love sharing your culinary creations with others? Or perhaps you're in search of inspiration for your next meal?" %}</p>
+      <p class="lead">{% trans "Look no further! Our social network is designed for food enthusiasts like you to connect, share, and discover delicious recipes from around the world." }</p>
+      <p class="lead">{% trans "Whether you're a seasoned chef or a novice in the kitchen, our platform offers a seamless experience for sharing your favorite recipes or finding new ones to try." }</p>
+      <h2 class="mt-5">{% trans "Key Features:" %}</h2>
       <ul class="list-unstyled">
-        <li>Share your favorite recipes with our community</li>
-        <li>Explore a vast collection of recipes from diverse cuisines</li>
-        <li>Find recipes using specific ingredients, recipe names, or cooking times</li>
-        <li>Connect with fellow foodies and exchange cooking tips</li>
+        <li>{% trans "Share your favorite recipes with our community" %}</li>
+        <li>{% trans "Explore a vast collection of recipes from diverse cuisines" %}</li>
+        <li>{% trans "Find recipes using specific ingredients, recipe names, or cooking times" %}</li>
+        <li>{% trans "Connect with fellow foodies and exchange cooking tips" %}</li>
       </ul>
-      <p class="lead">Join us today and embark on a culinary journey filled with creativity, flavor, and community!</p>
+      <p class="lead">{% trans "Join us today and embark on a culinary journey filled with creativity, flavor, and community!" %}</p>
       <br> 
       <ul class="list-unstyled">
         <li>Gavrylenko Mariia</li>

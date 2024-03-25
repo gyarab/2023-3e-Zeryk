@@ -1,28 +1,29 @@
 {% extends "recipes/box.html" %}
 <!-- -->
 {% load crispy_forms_tags %}
+{% load i18n %}
 <!-- -->
 {% block content %}
 <div class="container">
   <h1>{{ user.username }}</h1>
-  <h2>Your recipes:</h2>
+  <h2>{% trans "Your recipes:" %}</h2>
   <ul>
     {% for recipe in recipes %}
     <div class="card my-4">
       <div class="card-body">
         <h5 class="card-title">{{ recipe.title }}</h5>
-        <h6>Ingredients:</h6>
+        <h6>{% trans "Ingredients:" %}</h6>
         <ul>
           {% for ingredient in object.ingredients.all %}
           <li>{{ ingredient.name }}</li>
           {% endfor %}
         </ul>
-        <p class="card-text">Instructions: {{ recipe.description | safe }}</p>
+        <p class="card-text">{% trans "Instructions:" %} {{ recipe.description | safe }}</p>
         <h6 class="card-subtitle mb-2 text-muted">
           {{ recipe.updated_at|date:"F d, Y" }}
         </h6>
         <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link"
-          >View Recipe</a
+          >{% trans "View Recipe" %}</a
         >
       </div>
     </div>
