@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -8,8 +8,46 @@ from django.urls import reverse, reverse_lazy
 from . import models
 from .forms import IngredientForm, CommentForm
 import requests
+from django.conf import settings
+
+from .mixins import (
+	FormErrors,
+	RedirectParams,
+	APIMixin
+)
 
 #TODO delete comment, cas vareni + filtrovani pomoci casu, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??)
+
+def index(request):
+
+	if request.method == "POST":
+		cat = request.POST.get("cat", None)
+		query = request.POST.get("query", None)
+		if cat and query:
+			return RedirectParams(url = 'recipe/results', params = {"cat": cat, "query": query})
+
+	return render(request, 'recipes/recipe_form.html', {})
+
+def results(request):
+
+	cat = request.GET.get("cat", None)
+	query = request.GET.get("query", None)
+
+	if cat and query:
+		results = APIMixin(cat=cat, query=query).get_data()
+
+		if results:
+			context = {
+				"results": results,
+				"cat": cat,
+				"query": query,
+			}
+
+			return render(request, 'recipes/results.html', context)
+	
+	return redirect(reverse('recipes-recipe_form'))
+
+
 
 
 
@@ -86,8 +124,6 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     form.instance.author = self.request.user
     return super().form_valid(form)
   
-  
-
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
   model = models.Recipe
   fields = ['title', 'description']

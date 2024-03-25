@@ -1,0 +1,44 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+
+	<h4>API Results for:</h4>
+	<h3>Cat: <em style="color: #878787"><b>"{{cat}}"</b></em></h3>
+	<h3>Query: <em style="color: #878787"><b>"{{query}}"</b></em></h3>
+	  <table>
+	    <thead>
+	      <tr>
+	        <th>ID</th>
+	        <th>Name</th>
+			<th>Image</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    {% for item in results %}
+	      <tr>
+	        <td>{{item.id}}</td>
+	        {% if item.name %}
+	        	<td>{{item.name}}</td>
+	        {% else %}
+	        	<td>{{item.title}}</td>
+	        {% endif %}
+	        {% if cat == "ingredients" %}
+	        <td>No image available</td>
+	        {% else %}
+	        <td><img src="{{item.image}}" style="width:auto; height: 125px"></td> 
+	        {% endif %}
+	      </tr>
+	    {% endfor %}
+	      
+	    </tbody>
+	  </table>
+
+
+</div>
+
+
+{% endblock %}
