@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 10:52+0100\n"
+"POT-Creation-Date: 2024-03-25 17:53+0100\n"
 "PO-Revision-Date: 2024-03-24 10:54+0100\n"
 "Last-Translator: MATĚJ KRATOCHVÍL <prachovka.obecna@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\Zeryk\settings.py:122
+#: .\Zeryk\settings.py:121
 msgid "English"
 msgstr "Anglicky"
 
-#: .\Zeryk\settings.py:123
+#: .\Zeryk\settings.py:122
 msgid "Czech"
 msgstr "Čeština"
 
@@ -52,8 +52,7 @@ msgstr "Objevte rozsáhlou sbírku receptů z různých kuchyní"
 #: .\recipes\templates\recipes\about.html:16
 msgid "Find recipes using specific ingredients, recipe names, or cooking times"
 msgstr ""
-"Najděte recepty s konkrétními ingrediencemi, názvy receptů nebo dobami "
-"vaření"
+"Najděte recepty s konkrétními ingrediencemi, názvy receptů nebo dobami vaření"
 
 #: .\recipes\templates\recipes\about.html:17
 msgid "Connect with fellow foodies and exchange cooking tips"
@@ -77,30 +76,30 @@ msgstr "Komentář"
 msgid "Add Comment"
 msgstr "Přidat komentář"
 
-#: .\recipes\templates\recipes\box.html:10
+#: .\recipes\templates\recipes\box.html:11
 msgid "Home"
 msgstr "Domů"
 
-#: .\recipes\templates\recipes\box.html:14
+#: .\recipes\templates\recipes\box.html:15
 msgid "About"
 msgstr "O nás"
 
-#: .\recipes\templates\recipes\box.html:18
-#: .\recipes\templates\recipes\recipe_form.html:62
+#: .\recipes\templates\recipes\box.html:19
+#: .\recipes\templates\recipes\recipe_form.html:7
 msgid "Add Recipe"
 msgstr "Přidat recept"
 
-#: .\recipes\templates\recipes\box.html:23
+#: .\recipes\templates\recipes\box.html:24
 msgid "My Profile"
 msgstr "Můj profil"
 
-#: .\recipes\templates\recipes\box.html:32
+#: .\recipes\templates\recipes\box.html:33
 #: .\recipes\templates\recipes\recipe_detail.html:46
 #: .\users\templates\users\login.html:15
 msgid "Login"
 msgstr "Přihlášení"
 
-#: .\recipes\templates\recipes\box.html:36
+#: .\recipes\templates\recipes\box.html:37
 msgid "Register"
 msgstr "Registrace"
 
@@ -178,27 +177,35 @@ msgstr "Zatím žádné komentáře..."
 msgid "Add one"
 msgstr "Přidejte jeden"
 
-#: .\recipes\templates\recipes\recipe_form.html:69
-msgid "Search Ingredients"
-msgstr "Hledat ingredience"
+#: .\recipes\templates\recipes\recipe_form.html:16
+msgid "Select category"
+msgstr "Vyberte kategorii"
 
-#: .\recipes\templates\recipes\recipe_form.html:70
-msgid "Search ingredients..."
-msgstr "Hledat ingredience..."
+#: .\recipes\templates\recipes\recipe_form.html:18
+#, fuzzy
+#| msgid "Selected Ingredients"
+msgid "Select one"
+msgstr "Vyberte jednu"
 
-#: .\recipes\templates\recipes\recipe_form.html:71
+#: .\recipes\templates\recipes\recipe_form.html:19
+#, fuzzy
+#| msgid "Ingredients:"
+msgid "Ingredients"
+msgstr "Ingredience"
+
+#: .\recipes\templates\recipes\recipe_form.html:22
 msgid "Search"
 msgstr "Hledat"
 
-#: .\recipes\templates\recipes\recipe_form.html:75
-msgid "Selected Ingredients"
-msgstr "Vybrané ingredience"
+#: .\recipes\templates\recipes\recipe_form.html:24
+msgid "Submit"
+msgstr "Potvrdit"
 
-#: .\recipes\templates\recipes\recipe_form.html:80
+#: .\recipes\templates\recipes\recipe_form.html:28
 msgid "Save Recipe"
 msgstr "Uložit Recept"
 
-#: .\recipes\templates\recipes\recipe_form.html:84
+#: .\recipes\templates\recipes\recipe_form.html:32
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -229,3 +236,9 @@ msgstr "Registrace"
 #: .\users\templates\users\register.html:19
 msgid "Already have an account? Log in."
 msgstr "Již máte účet? Přihlaste se."
+
+#~ msgid "Search Ingredients"
+#~ msgstr "Hledat ingredience"
+
+#~ msgid "Search ingredients..."
+#~ msgstr "Hledat ingredience..."
