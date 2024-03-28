@@ -4,8 +4,9 @@ from django.urls import path, include
 from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.i18n import set_language
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('recipes.urls')),
     path('register/', user_views.register, name="user-register"),
@@ -14,4 +15,4 @@ urlpatterns = [
     path('profile/', user_views.profile, name="user-profile"),
     path('logout/', user_views.logout, name='logout'),
     path('set_language/', set_language, name='set_language'),
-]
+)

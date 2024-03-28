@@ -38,34 +38,40 @@
             </a>
             {% endif %}
         </div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {% if LANGUAGE_CODE == 'en' %}
-                    <img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English
-                {% elif LANGUAGE_CODE == 'cs' %}
-                    <img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština
-                {% endif %}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="languageDropdown">
-                {% if LANGUAGE_CODE != 'en' %}
-                    <a class="dropdown-item" href="{% url 'set_language' %}?language=en"><img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English</a>
-                {% endif %}
-                {% if LANGUAGE_CODE != 'cs' %}
-                    <a class="dropdown-item" href="{% url 'set_language' %}?language=cz"><img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština</a>
-                {% endif %}
-            </div>
 
+        <form id="languageForm" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+            <input id="languageInput" name="language" type="hidden" value="" />
+          </form>
+
+        <div class="dropdown-wrapper">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Language
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% if LANGUAGE_CODE == 'en' %}
+                    <img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English
+                  {% elif LANGUAGE_CODE == 'cz' %}
+                    <img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština
+                  {% endif %}
                 </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'set_language' %}?language=en">English</a></li>
-                  <li><a class="dropdown-item" href="{% url 'set_language' %}?language=cz">Česky</a></li>
-                </ul>
-            </div>
-        </div>               
+                <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                  {% if LANGUAGE_CODE == 'cz' %}
+                    <a class="dropdown-item" href="#" onclick="setLanguage('en')"><img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English</a>
+                  {% elif LANGUAGE_CODE == 'en' %}
+                    <a class="dropdown-item" href="#" onclick="setLanguage('cz')"><img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština</a>
+                  {% endif %}
+                </div>
+              </div>
+        </div>
     </div>
 </div>
+
+<script>
+    function setLanguage(lang) {
+      document.getElementById('languageInput').value = lang;
+      document.getElementById('languageForm').submit();
+    }
+  </script>
 
 {% endblock %}

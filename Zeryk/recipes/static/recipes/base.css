@@ -2,7 +2,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 95vh;
+    margin-bottom: 20px;
     width: 250px;
     background-color: whitesmoke;
     border-radius: 10px;
@@ -10,6 +11,27 @@
     padding: 20px;
     margin: 20px;
     overflow-y: auto;
+    align-items: center;
+    justify-items: center;
+}
+
+.dropdown-wrapper {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 20px;
+    width: fit-content;
+}
+
+.dropdown .btn {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.dropdown img {
+    height: 12px;
+    width: fit-content;
 }
 
 .navigation-box {
