@@ -3,13 +3,13 @@
     top: 0;
     left: 0;
     height: 95vh;
-    margin-bottom: 20px;
-    width: 250px;
+    margin-bottom: 1vw;
+    width: 10vw;
     background-color: whitesmoke;
-    border-radius: 10px;
+    border-radius: 0.5vw;
     border: 1px solid gainsboro;
-    padding: 20px;
-    margin: 20px;
+    padding: 1vw;
+    margin: 1vw;
     overflow-y: auto;
     align-items: center;
     justify-items: center;
@@ -17,20 +17,20 @@
 
 .dropdown-wrapper {
     position: absolute;
-    bottom: 20px;
+    bottom: 1vw;
     left: 50%;
     transform: translateX(-50%);
-    height: 20px;
+    height: 1vw;
     width: fit-content;
 }
 
 .dropdown .btn {
-    font-size: 12px;
+    font-size: 0.7vw;
     padding: 5px 10px;
 }
 
 .dropdown img {
-    height: 12px;
+    height: 0.6vw;
     width: fit-content;
 }
 
