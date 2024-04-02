@@ -5,3 +5,4 @@ Pillow
 requests
 django-richtextfield
 django-ckeditor
+django-modeltranslation
