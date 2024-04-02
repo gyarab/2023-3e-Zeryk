@@ -16,7 +16,7 @@ from .mixins import (
 	APIMixin
 )
 
-#TODO delete comment, cas vareni + filtrovani pomoci casu, id_ingridient (vyhledavani podle ingridienci), hodnoceni receptu(hvezdicky idk??)
+#TODO delete comment, cas vareni + filtrovani pomoci casu
 
 def index(request):
 
