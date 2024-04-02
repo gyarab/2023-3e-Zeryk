@@ -2,6 +2,7 @@
 {% load i18n %}
 <!-- -->
 {% block content %}
+<div class="container">
   <h1>{{ object.title }}</h1>
   <div class="card my-4">
     <div class="card-body">
@@ -29,6 +30,7 @@
       >{% trans "Delete" %}</a
     >
   </div>
+
   <br/>
   <hr>
   {% endif %}
@@ -49,7 +51,7 @@
     - {{ total_likes }} {% trans "Likes" %}
   </form>
 
-  <br>
+<br>
 <h2>{% trans "Comments" %}</h2>
 <br/>
 {% if not object.comments.all %}
@@ -73,5 +75,7 @@
     <a href="{% url 'add_comment' object.pk %}"></a>
 {% endif %}
 <br/>
+</div>
+
 <!-- -->
 {% endblock content %}

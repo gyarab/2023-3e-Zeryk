@@ -11,20 +11,6 @@
     {{ form.media }}
     {{ form.as_p }}
 
-    <form id="apiform" method="POST" action="/">
-      {% csrf_token %}
-
-    <label for="username">{% trans "Select category" %}</label>
-    <select name="cat" id="cat">
-      <option selected value="">{% trans "Select one" %}</option>
-        <option value="ingredients">{% trans "Ingredients" %}</option>
-      </select>
-    
-    <label for="username">{% trans "Search" %}</label>
-    <input type="search" id="query" name="query">
-    <button type="submit">{% trans "Submit" %}</button>
-  </form>
-
   <div class="form-group py-3">
     <input class="btn btn-outline-primary" type="submit" value="{% trans "Save Recipe" %}" />
   </div>
