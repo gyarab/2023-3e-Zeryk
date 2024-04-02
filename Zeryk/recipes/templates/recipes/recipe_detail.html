@@ -31,7 +31,7 @@
   </div>
   <br/>
   <hr>
-    
+  {% endif %}
   <form action="{% url 'like_post' object.pk %}"method = "POST">
     {% csrf_token %}
     
@@ -73,8 +73,5 @@
     <a href="{% url 'add_comment' object.pk %}"></a>
 {% endif %}
 <br/>
-
-</div>
-  {% endif %}
 <!-- -->
 {% endblock content %}
