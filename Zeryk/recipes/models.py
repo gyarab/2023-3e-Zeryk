@@ -20,6 +20,9 @@ class Recipe(models.Model):
   ingredients = models.ManyToManyField(Ingredient)
   likes = models.ManyToManyField(User, related_name='blog_posts')
 
+  class Meta:
+    ordering = ['-created_at']
+
   def get_absolute_url(self):
     return reverse("recipes-detail", kwargs={"pk": self.pk})
   

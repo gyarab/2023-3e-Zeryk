@@ -64,7 +64,7 @@ def like(request, pk):
   return HttpResponseRedirect(reverse('recipes-detail', args=[str(pk)]))
 
 def home(request):
-  recipes = models.Recipe.objects.all()
+  recipes = models.Recipe.objects.all().order_by('-created_at')
   context = {
     'recipes': recipes
   }
