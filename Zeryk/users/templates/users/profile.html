@@ -22,7 +22,7 @@
         <h6 class="card-subtitle mb-2 text-muted">
           {{ recipe.updated_at|date:"F d, Y" }}
         </h6>
-        <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link"
+        <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link no-style"
           >{% trans "View Recipe" %}</a
         >
       </div>
