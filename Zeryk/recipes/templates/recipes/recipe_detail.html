@@ -8,12 +8,16 @@
     <div class="card-body">
       <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
       <h5 class="card-title">{{ object.title }}</h5>
-      <h6>{% trans "Ingredients:" %}</h6>
-      <ul>
-        {% for ingredient in object.ingredients.all %}
-        <li>{{ ingredient.name }}</li>
-        {% endfor %}
-      </ul>
+      {% if object.ingredients.all|length %}
+        <h6>{% trans "Ingredients:" %}</h6>
+        <ul>
+          {% for ingredient in object.ingredients.all %}
+          <li>{{ ingredient.name }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>{% trans "No ingredients added yet." %}</p>
+      {% endif %}
 
       <p class="card-text">{% trans "Instructions:" %} {{ object.description|safe }}</p>
       <h6 class="card-subtitle mb-2 text-muted">

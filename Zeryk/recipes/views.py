@@ -6,49 +6,11 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from . import models
-from .forms import IngredientForm, CommentForm
+from .forms import RecipeForm, CommentForm
 import requests
 from django.conf import settings
 
-from .mixins import (
-	FormErrors,
-	RedirectParams,
-	APIMixin
-)
-
 #TODO delete comment, cas vareni + filtrovani pomoci casu
-
-def index(request):
-
-	if request.method == "POST":
-		cat = request.POST.get("cat", None)
-		query = request.POST.get("query", None)
-		if cat and query:
-			return RedirectParams(url = 'recipe/results', params = {"cat": cat, "query": query})
-
-	return render(request, 'recipes/recipe_form.html', {})
-
-def results(request):
-
-	cat = request.GET.get("cat", None)
-	query = request.GET.get("query", None)
-
-	if cat and query:
-		results = APIMixin(cat=cat, query=query).get_data()
-
-		if results:
-			context = {
-				"results": results,
-				"cat": cat,
-				"query": query,
-			}
-
-			return render(request, 'recipes/results.html', context)
-	
-	return redirect(reverse('recipes-recipe_form'))
-
-
-
 
 
 def like(request, pk):
@@ -117,23 +79,33 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     return self.request.user == recipe.author
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
-  model = models.Recipe
-  fields = ['title', 'description']
+    model = models.Recipe
+    form_class = RecipeForm
+    template_name = 'recipes/recipe_form.html'
 
-  def form_valid(self, form):
-    form.instance.author = self.request.user
-    return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
   
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-  model = models.Recipe
-  fields = ['title', 'description']
+    model = models.Recipe
+    fields = ['title', 'description',]
 
-  def test_func(self):
-    recipe = self.get_object()
-    return self.request.user == recipe.author
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ingredients'] = self.object.ingredients.all()
+        return context
 
-  def form_valid(self, form):
-    form.instance.author = self.request.user
-    return super().form_valid(form)
+    def test_func(self):
+        recipe = self.get_object()
+        return self.request.user == recipe.author
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
