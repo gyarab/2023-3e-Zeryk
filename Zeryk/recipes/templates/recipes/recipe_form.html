@@ -9,7 +9,24 @@
     </fieldset>
     {% csrf_token %}
     {{ form.media }}
-    {{ form.as_p }}
+    <div class="row">
+      <div class="col-sm-6">
+        {{ form.title.label_tag }}<br>
+        {{ form.title }}
+      </div>
+     </div>
+     <div class = "row"> 
+      <div class="col-sm-20">
+        {{ form.description.label_tag }}<br>
+        {{ form.description }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h4>{% trans "Ingredients" %}</h4>
+        {{ form.ingredients }}
+      </div>
+    </div>
 
   <div class="form-group py-3">
     <input class="btn btn-outline-primary" type="submit" value="{% trans "Save Recipe" %}" />

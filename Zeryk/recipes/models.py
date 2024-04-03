@@ -8,6 +8,9 @@ from ckeditor.fields import RichTextField
 class Ingredient(models.Model):
   name = models.CharField(max_length=100)
 
+  class Meta:
+    ordering = ['name']
+
   def __str__(self):
     return self.name
 
@@ -17,7 +20,7 @@ class Recipe(models.Model):
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  ingredients = models.ManyToManyField(Ingredient)
+  ingredients = models.ManyToManyField(Ingredient, related_name='recipes')
   likes = models.ManyToManyField(User, related_name='blog_posts')
 
   class Meta:
@@ -32,6 +35,7 @@ class Recipe(models.Model):
   def __str__(self):
     return self.title
   
+
 class Comment(models.Model):
   post = models.ForeignKey(Recipe, related_name="comments", on_delete=models.CASCADE)
   name = models.CharField(max_length=255)

@@ -11,6 +11,4 @@ urlpatterns = [
     path('about/', views.about, name="recipes-about"),
     path('recipe/like/<int:pk>', like, name='like_post'),
     path('recipe/<int:pk>/comment/', AddCommentView.as_view(), name="add_comment"),
-    path('recipe/results', views.results, name="results"),
-
 ]
