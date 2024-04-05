@@ -16,10 +16,13 @@ class CommentForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
+class IngredientAutocompleteWidget(forms.TextInput):
+    template_name = 'recipes/ingredient_autocomplete.html'
+
 class RecipeForm(forms.ModelForm):
     ingredients = forms.ModelMultipleChoiceField(
         queryset=Ingredient.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
+        widget=IngredientAutocompleteWidget,
         required=False
     )
 

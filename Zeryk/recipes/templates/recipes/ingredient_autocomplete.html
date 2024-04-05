@@ -1,0 +1,21 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.min.css' %}">
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+
+<script type="text/javascript">
+$(function() {
+    function log(message) {
+        console.log(message);
+    }
+
+    $("#{{ widget.id }}").autocomplete({
+        source: "{% url 'ingredient-autocomplete' %}",
+        minLength: 2,
+        select: function(event, ui) {
+            log("Selected: " + ui.item.value + " aka " + ui.item.id);
+        }
+    });
+});
+</script>
