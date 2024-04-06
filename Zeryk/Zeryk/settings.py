@@ -121,7 +121,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [
-    BASE_DIR / 'Zeryk/locale/',
+    BASE_DIR / 'locale/',
 ]
 
 USE_I18N = True

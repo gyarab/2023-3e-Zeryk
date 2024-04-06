@@ -10,7 +10,7 @@
     border: 1px solid gainsboro;
     padding: 1vw;
     margin: 1vw;
-    overflow-y: auto;
+    overflow-y: hidden;
     align-items: center;
     justify-items: center;
 }
@@ -37,7 +37,7 @@
     padding: 1vw;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .nav-box-wrapper {
         display: none;
     }
@@ -53,8 +53,20 @@
     .collapse.navbar-collapse.show {
         display: block;
     }
-}
 
+    .collapse.flag-icon {
+        height: 2vw;
+    }
+
+    .dropdown-menu .flag-icon {
+        height: 24px;
+        width: auto;
+    }
+
+    .dropdown-menu {
+        min-width: auto;
+    }
+}
 
 .dropdown-wrapper {
     position: absolute;
