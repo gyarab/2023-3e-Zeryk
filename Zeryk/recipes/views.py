@@ -9,6 +9,7 @@ from . import models
 from .forms import RecipeForm, CommentForm
 import requests
 from django.conf import settings
+from django.http import JsonResponse
 
 #TODO delete comment, cas vareni + filtrovani pomoci casu
 
@@ -34,6 +35,14 @@ def home(request):
 
 def about(request):
   return render(request, 'recipes/about.html', {'title': 'about page'})
+
+def ingredient_autocomplete(request):
+    query = request.GET.get('term')
+    ingredients = models.Ingredient.objects.filter(name__istartswith=query)[:10]
+    results = []
+    for ingredient in ingredients:
+        results.append(ingredient.name)
+    return JsonResponse(results, safe=False)
 
 class RecipeListView(ListView):
   model = models.Recipe
