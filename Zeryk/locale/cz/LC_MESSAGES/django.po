@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 21:05+0200\n"
+"POT-Creation-Date: 2024-04-07 15:33+0200\n"
 "PO-Revision-Date: 2024-04-06 21:11+0200\n"
 "Last-Translator: MATEJ KRATOCHVIL <matej.kratochvil@student.gyarab.cz>\n"
 "Language-Team: TIM EISELT <tim.eiselt@student.gyarab.cz>\n"
@@ -19,6 +19,16 @@ msgstr "Anglicky"
 #: .\Zeryk\settings.py:120
 msgid "Czech"
 msgstr "Česky"
+
+#: .\recipes\templates\recipes\404.html:10
+msgid "Page not found"
+msgstr "Stránka nenalezena"
+
+#: .\recipes\templates\recipes\404.html:11
+msgid ""
+"I've been sniffing around everywhere, but I just can't seem to find this "
+"page!"
+msgstr "Čuchal jsem všude, ale tuto stránku nemůžu najít!"
 
 #: .\recipes\templates\recipes\about.html:8
 msgid "Welcome to Our Social Recipe Sharing Network!"
@@ -38,8 +48,8 @@ msgid ""
 "you to connect, share, and discover delicious recipes from around the world."
 msgstr ""
 "Nemusíte hledat dál! Naše sociální síť je navržena pro nadšence do jídla "
-"jako jste vy, abyste se spojili, sdíleli a objevili lahodné recepty z "
-"celého světa."
+"jako jste vy, abyste se spojili, sdíleli a objevili lahodné recepty z celého "
+"světa."
 
 #: .\recipes\templates\recipes\about.html:11
 msgid ""

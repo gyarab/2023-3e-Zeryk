@@ -118,3 +118,5 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+def unknown(request, exception):
+    return render(request, 'recipes/404.html', status=404)
