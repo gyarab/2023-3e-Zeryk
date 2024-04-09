@@ -6,10 +6,10 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from . import models
-from .forms import RecipeForm, CommentForm
+from .forms import RecipeForm, CommentForm, RecipeSearch
 import requests
 from django.conf import settings
-from django.http import JsonResponse
+
 
 #TODO delete comment, cas vareni + filtrovani pomoci casu
 
@@ -36,13 +36,17 @@ def home(request):
 def about(request):
   return render(request, 'recipes/about.html', {'title': 'about page'})
 
-def ingredient_autocomplete(request):
-    query = request.GET.get('term')
-    ingredients = models.Ingredient.objects.filter(name__istartswith=query)[:10]
-    results = []
-    for ingredient in ingredients:
-        results.append(ingredient.name)
-    return JsonResponse(results, safe=False)
+def search_recipes(request):
+  form = RecipeSearch(request.GET)
+  if form.is_valid():
+      ingredients = form.cleaned_data['ingredients']
+      recipes = models.Recipe.objects.filter(
+          ingredients__name__in=ingredients.split(',')
+      )
+      return render(request, 'recipes/search.html', {'recipes': recipes})
+  else:
+      form = RecipeSearch()
+  return render(request, 'home.html', {'form': form})
 
 class RecipeListView(ListView):
   model = models.Recipe
@@ -103,7 +107,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
   
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = models.Recipe
-    fields = ['title', 'description',]
+    fields = ['title', 'description','ingredients']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,0 +1,38 @@
+{% extends 'recipes/box.html' %}
+{% load i18n %}
+{% block content %}
+  <h1>Search Results:</h1>
+  {% if recipes %}
+    <ul>
+      {% for recipe in recipes %}
+      <div class="container my-4">
+        <div class="card" style="width: 60rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ recipe.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ recipe.author }}</h6>
+            
+            {% if recipe.ingredients.all|length %}
+              <h6>{% trans "Ingredients:" %}</h6>
+              <ul>
+                {% for ingredient in recipe.ingredients.all %}
+                <li>{{ ingredient.name }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>{% trans "No ingredients added yet." %}</p>
+            {% endif %}
+      
+            <h6>{% trans "Instructions:" %}</h6><p class="card-text"> {{ recipe.description | safe }}</p>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ recipe.updated_at|date:"F d, Y" }}
+            </h6>
+            <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link no-style">{% trans "View Recipe" %}</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No recipes found.</p>
+  {% endif %}
+{% endblock %}

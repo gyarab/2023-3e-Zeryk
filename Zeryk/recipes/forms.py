@@ -16,14 +16,10 @@ class CommentForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
-class IngredientAutocompleteWidget(forms.TextInput):
-    template_name = 'recipes/ingredient_autocomplete.html'
-
 class RecipeForm(forms.ModelForm):
     ingredients = forms.ModelMultipleChoiceField(
         queryset=Ingredient.objects.all(),
-        widget=IngredientAutocompleteWidget,
-        required=False
+        widget=forms.CheckboxSelectMultiple
     )
 
     def __init__(self, *args, **kwargs):
@@ -42,3 +38,6 @@ class RecipeForm(forms.ModelForm):
             for ingredient in self.cleaned_data['ingredients']:
                 recipe.ingredients.add(ingredient)
         return recipe
+    
+class RecipeSearch(forms.Form):
+    ingredients = forms.CharField(label ='Ingridients', max_length=100)

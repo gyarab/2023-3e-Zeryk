@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from users import views as user_views
@@ -17,6 +16,7 @@ urlpatterns = i18n_patterns(
     path('profile/', user_views.profile, name="user-profile"),
     path('logout/', user_views.logout, name='logout'),
     path('set_language/', set_language, name='set_language'),
+    
 )
 
 handler404 = 'recipes.views.unknown'
