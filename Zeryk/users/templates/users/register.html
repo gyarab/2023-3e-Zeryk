@@ -5,7 +5,7 @@
 <!-- -->
 {% block content %}
 <div class="container">
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <fieldset class="form-group">
       <legend class="border-bottom mb-4">{% trans "Sign Up" %}!</legend>
