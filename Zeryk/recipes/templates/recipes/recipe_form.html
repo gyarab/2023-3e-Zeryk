@@ -24,6 +24,11 @@
     <div class="row">
       <div class="col-sm-12">
         <h4>{% trans "Ingredients" %}</h4>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="search-ingredient" placeholder="Search ingredients...">
+          <button class="btn btn-outline-secondary" type="button" id="ingredient-search-btn">Search</button>
+      </div>
+      <div id="ingredient-search-results" style="display: none;"></div>
         {{ form.ingredients }}
       </div>
     </div>
@@ -37,3 +42,29 @@
   </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+<script>
+  $(document).ready(function() {
+      $('#search-ingredient').on('input', function() {
+          var query = $(this).val();
+          if (query.length > 2) {
+              $.get('/recipes/search-ingredients/', { query: query }, function(data) {
+                  var results = $('#ingredient-search-results');
+                  results.empty();
+                  if (data.results.length > 0) {
+                      results.show();
+                      data.results.forEach(function(result) {
+                          results.append('<div class="form-check"><input class="form-check-input" type="checkbox" value="' + result.id + '"><label class="form-check-label">' + result.name + '</label></div>');
+                      });
+                  } else {
+                      results.hide();
+                  }
+              });
+          } else {
+              $('#ingredient-search-results').hide();
+          }
+      });
+  });
+</script>
+{% endblock scripts %}

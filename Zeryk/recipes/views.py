@@ -9,6 +9,8 @@ from . import models
 from .forms import RecipeForm, CommentForm, RecipeSearch
 import requests
 from django.conf import settings
+from django.core import serializers
+from django.http import JsonResponse
 
 
 #TODO delete comment, cas vareni + filtrovani pomoci casu
@@ -35,6 +37,15 @@ def home(request):
 
 def about(request):
   return render(request, 'recipes/about.html', {'title': 'about page'})
+
+def search_ingredients(request):
+    query = request.GET.get('query')
+    if query:
+        results = models.Ingredient.objects.filter(name__icontains=query)
+        data = [{'id': result.id, 'name': result.name} for result in results]
+        return JsonResponse({'results': data})
+    else:
+        return JsonResponse({'results': []})
 
 def search_recipes(request):
   form = RecipeSearch(request.GET)

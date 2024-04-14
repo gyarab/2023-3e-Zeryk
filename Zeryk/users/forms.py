@@ -1,5 +1,5 @@
 from django import forms
-from .models import AUser as User
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 class UserRegisterForm(UserCreationForm):
@@ -22,15 +22,6 @@ class UserRegisterForm(UserCreationForm):
                                                                   'data-toggle': 'password',
                                                                   'id': 'password',
                                                                   }))
-    profile_picture = forms.ImageField(required=False)
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2', 'profile_picture']
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.profile_picture = self.cleaned_data.get('profile_picture')
-
-        if commit:
-            user.save()
-        return user
+        fields = ['username', 'password1', 'password2']

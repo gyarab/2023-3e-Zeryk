@@ -17,18 +17,15 @@ class CommentForm(forms.ModelForm):
         }
 
 class RecipeForm(forms.ModelForm):
-    ingredients = forms.ModelMultipleChoiceField(
-        queryset=Ingredient.objects.all(),
-        widget=forms.CheckboxSelectMultiple
-    )
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        super().__init__(*args, **kwargs)
+    search_ingredient = forms.CharField(required=False, label='', widget=forms.TextInput(attrs={'placeholder': 'Search ingredients...', 'class': 'form-control'}))
 
     class Meta:
         model = Recipe
         fields = ['title', 'description', 'ingredients']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['search_ingredient'].widget.attrs['id'] = 'search-ingredient'
 
     def save(self, commit=True):
         recipe = super().save(commit=False)
