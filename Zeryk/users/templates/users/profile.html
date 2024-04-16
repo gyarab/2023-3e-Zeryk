@@ -1,8 +1,6 @@
 {% extends "recipes/box.html" %}
 <!-- -->
-{% load crispy_forms_tags %}
-{% load i18n %}
-{% load static %}
+{% load crispy_forms_tags %} {% load i18n %} {% load static %}
 
 <!-- -->
 {% block content %}
@@ -20,11 +18,15 @@
           <li>{{ ingredient.name }}</li>
           {% endfor %}
         </ul>
-        <p class="card-text">{% trans "Instructions:" %} {{ recipe.description | safe }}</p>
+        <p class="card-text">
+          {% trans "Instructions:" %} {{ recipe.description | safe }}
+        </p>
         <h6 class="card-subtitle mb-2 text-muted">
           {{ recipe.updated_at|date:"F d, Y" }}
         </h6>
-        <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link no-style"
+        <a
+          href="{% url 'recipes-detail' recipe.pk %}"
+          class="card-link no-style"
           >{% trans "View Recipe" %}</a
         >
       </div>

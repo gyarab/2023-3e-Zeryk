@@ -1,5 +1,4 @@
-{% extends "recipes/box.html" %}
-{% load i18n %}
+{% extends "recipes/box.html" %} {% load i18n %}
 <!-- -->
 {% block content %}
 <div class="container">
@@ -9,17 +8,27 @@
       <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
       <h5 class="card-title">{{ object.title }}</h5>
       {% if object.ingredients.all|length %}
-        <h6>{% trans "Ingredients:" %}</h6>
-        <ul>
-          {% for ingredient in object.ingredients.all %}
-          <li>{{ ingredient.name }}</li>
-          {% endfor %}
-        </ul>
+      <h6>{% trans "Ingredients:" %}</h6>
+      <ul>
+        {% for ingredient in object.ingredients.all %}
+        <li>{{ ingredient.name }}</li>
+        {% endfor %}
+      </ul>
       {% else %}
-        <p>{% trans "No ingredients added yet." %}</p>
+      <p>{% trans "No ingredients added yet." %}</p>
       {% endif %}
 
-      <p class="card-text">{% trans "Instructions:" %} {{ object.description|safe }}</p>
+      <!-- Add the following lines to display the image -->
+      {% if object.image %}
+      <img
+        src="{{ object.image.url }}"
+        alt="{{ object.title }}"
+        class="img-fluid" />
+      {% endif %}
+
+      <p class="card-text">
+        {% trans "Instructions:" %} {{ object.description|safe }}
+      </p>
       <h6 class="card-subtitle mb-2 text-muted">
         {{ object.updated_at|date:"F d, Y" }}
       </h6>
@@ -30,55 +39,70 @@
     <a class="btn btn-outline-info" href="{% url 'recipes-update' object.id %}"
       >{% trans "Edit" %}</a
     >
-    <a class="btn btn-outline-danger" href="{% url 'recipes-delete' object.id %}"
+    <a
+      class="btn btn-outline-danger"
+      href="{% url 'recipes-delete' object.id %}"
       >{% trans "Delete" %}</a
     >
   </div>
 
-  <br/>
-  <hr>
+  <br />
+  <hr />
   {% endif %}
-  <form action="{% url 'like_post' object.pk %}"method = "POST">
-    {% csrf_token %}
-    
-  {% if user.is_authenticated %}
-    {% if liked %}
-      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-danger btn-sm">{% trans "Unlike" %}</button> 
-    {% else %}	
-      <button type="submit", name="object_id", value="{{ object.id }}", class="btn btn-primary btn-sm">{% trans "Like" %}</button> 
+  <form action="{% url 'like_post' object.pk %}" method="POST">
+    {% csrf_token %} {% if user.is_authenticated %} {% if liked %}
+    <button
+      type="submit"
+      ,
+      name="object_id"
+      ,
+      value="{{ object.id }}"
+      ,
+      class="btn btn-danger btn-sm">
+      {% trans "Unlike" %}
+    </button>
+    {% else %}
+    <button
+      type="submit"
+      ,
+      name="object_id"
+      ,
+      value="{{ object.id }}"
+      ,
+      class="btn btn-primary btn-sm">
+      {% trans "Like" %}
+    </button>
 
-    {% endif %}
-  {% else %}
-    <small><a href="{% url 'login' %}">{% trans "Login" %}</a> {% trans "to like" %}</small>
-  {% endif %}
-    
-    - {{ total_likes }} {% trans "Likes" %}
+    {% endif %} {% else %}
+    <small
+      ><a href="{% url 'login' %}">{% trans "Login" %}</a> {% trans "to like"
+      %}</small
+    >
+    {% endif %} - {{ total_likes }} {% trans "Likes" %}
   </form>
 
-<br>
-<h2>{% trans "Comments" %}</h2>
-<br/>
-{% if not object.comments.all %}
-  {% trans "No Comments Yet..." %}<a href="{% url 'add_comment' object.pk %}">{% trans "Add one" %}</a>
-{% else %}
+  <br />
+  <h2>{% trans "Comments" %}</h2>
+  <br />
+  {% if not object.comments.all %} {% trans "No Comments Yet..." %}<a
+    href="{% url 'add_comment' object.pk %}"
+    >{% trans "Add one" %}</a
+  >
+  {% else %}
 
-<a href="{% url 'add_comment' object.pk %}">{% trans "Add Comment" %}</a>
-<br/><br/>
+  <a href="{% url 'add_comment' object.pk %}">{% trans "Add Comment" %}</a>
+  <br /><br />
 
   {% for comment in object.comments.all %}
-    <strong>
-      {{ comment.name }} - 
-      {{ comment.date_added }}
-    </strong>
-    <br/>
-    {{ comment.body | safe }}
-    <br/><br/>
-    
-  
+  <strong> {{ comment.name }} - {{ comment.date_added }} </strong>
+  <br />
+  {{ comment.body | safe }}
+  <br /><br />
+
   {% endfor %}
-    <a href="{% url 'add_comment' object.pk %}"></a>
-{% endif %}
-<br/>
+  <a href="{% url 'add_comment' object.pk %}"></a>
+  {% endif %}
+  <br />
 </div>
 
 <!-- -->

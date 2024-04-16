@@ -13,9 +13,6 @@ from django.core import serializers
 from django.http import JsonResponse
 
 
-#TODO delete comment, cas vareni + filtrovani pomoci casu
-
-
 def like(request, pk):
   post = get_object_or_404(models.Recipe, id=request.POST.get('object_id'))
   liked = False
@@ -38,26 +35,22 @@ def home(request):
 def about(request):
   return render(request, 'recipes/about.html', {'title': 'about page'})
 
-def search_ingredients(request):
-    query = request.GET.get('query')
-    if query:
-        results = models.Ingredient.objects.filter(name__icontains=query)
-        data = [{'id': result.id, 'name': result.name} for result in results]
-        return JsonResponse({'results': data})
-    else:
-        return JsonResponse({'results': []})
 
 def search_recipes(request):
-  form = RecipeSearch(request.GET)
-  if form.is_valid():
-      ingredients = form.cleaned_data['ingredients']
-      recipes = models.Recipe.objects.filter(
-          ingredients__name__in=ingredients.split(',')
-      )
-      return render(request, 'recipes/search.html', {'recipes': recipes})
-  else:
-      form = RecipeSearch()
-  return render(request, 'home.html', {'form': form})
+    form = RecipeSearch(request.GET)
+    if form.is_valid():
+        ingredients = form.cleaned_data['ingredients']
+        recipes = models.Recipe.objects.filter(
+            ingredients__name__in=ingredients.split(',')
+        )
+        results = []
+        for recipe in recipes:
+            if recipe not in results:
+                results.append(recipe)
+        return render(request, 'recipes/search.html', {'recipes': results})
+    else:
+        form = RecipeSearch()
+    return render(request, 'home.html', {'form': form})
 
 class RecipeListView(ListView):
   model = models.Recipe
@@ -108,22 +101,33 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     template_name = 'recipes/recipe_form.html'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        new_ingredient_name = self.request.GET.get('new_ingredient')
+        if new_ingredient_name:
+            ingredient, created = models.Ingredient.objects.get_or_create(name=new_ingredient_name)
+            if created:
+                ingredient.save()
+            self.object.ingredients.add(ingredient)
         return super().form_valid(form)
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['request'] = self.request
-        return kwargs
-  
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = models.Recipe
-    fields = ['title', 'description','ingredients']
+    form_class = RecipeForm
+    template_name = 'recipes/recipe_form.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['ingredients'] = self.object.ingredients.all()
-        return context
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        new_ingredient_name = self.request.GET.get('new_ingredient')
+        if new_ingredient_name:
+            ingredient, created = models.Ingredient.objects.get_or_create(name=new_ingredient_name)
+            if created:
+                ingredient.save()
+            self.object.ingredients.add(ingredient)
+        return super().form_valid(form)
 
     def test_func(self):
         recipe = self.get_object()

@@ -26,9 +26,6 @@ def logout(request):
 
 @login_required()
 def profile(request):
-  return render(request, 'users/profile.html')
-
-def profile(request):
   user = request.user
   recipes = Recipe.objects.filter(author=user)
   return render(request, 'users/profile.html', {'recipes': recipes})
