@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, reverse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -7,11 +7,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from . import models
 from .forms import RecipeForm, CommentForm, RecipeSearch
-import requests
-from django.conf import settings
-from django.core import serializers
-from django.http import JsonResponse
-
 
 def like(request, pk):
   post = get_object_or_404(models.Recipe, id=request.POST.get('object_id'))
