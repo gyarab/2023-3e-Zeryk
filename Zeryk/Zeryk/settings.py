@@ -128,6 +128,18 @@ USE_L10N = True
 USE_TZ = True
 #MODELTRANSLATION_DEFAULT_LANGUAGE = 'en' 
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            ['Format', 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'],
+            ['Link', 'Unlink'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList', 'Outdent', 'Indent'],
+            ['Source']
+        ],
+    },
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
