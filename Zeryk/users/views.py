@@ -12,9 +12,11 @@ def register(request):
     if request.method == "POST":
         form = forms.UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save(commit=False)
+            user = form.save(commit=False)
             username = form.cleaned_data.get('username')
-            profile = UserProfile.objects.get(user=request.user)
+            user.set_password(form.cleaned_data.get('password1'))
+            user.save()
+            profile = UserProfile.objects.get(user=user)
             profile.pfp = form.cleaned_data.get('pfp')
             profile.save()
             messages.success(request, f"{username}, your account is created, please login.")

@@ -21,9 +21,13 @@ class RecipeForm(forms.ModelForm):
         queryset=Ingredient.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+    photo = forms.ImageField(required=False,
+                           widget=forms.FileInput(attrs={'class': 'form-control',
+                                                         'id': 'photo',
+                                                        }))
     class Meta:
         model = Recipe
-        fields = ['title', 'description', 'ingredients']
+        fields = ['title', 'description', 'ingredients', 'photo']
     
 class RecipeSearch(forms.Form):
     ingredients = forms.CharField(label ='Ingridients', max_length=100)

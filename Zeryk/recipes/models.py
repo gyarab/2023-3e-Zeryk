@@ -22,6 +22,11 @@ class Recipe(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
   ingredients = models.ManyToManyField(Ingredient, related_name='recipes')
   likes = models.ManyToManyField(User, related_name='blog_posts')
+  photo = models.ImageField(
+        upload_to='recipes',
+        null=True,
+        blank=True,
+    )
 
   class Meta:
     ordering = ['-created_at']
