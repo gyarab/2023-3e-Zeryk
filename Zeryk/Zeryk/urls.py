@@ -6,6 +6,8 @@ from django.conf.urls.i18n import set_language
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls import handler404
 from recipes.views import unknown
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
@@ -16,7 +18,6 @@ urlpatterns = i18n_patterns(
     path('profile/', user_views.profile, name="user-profile"),
     path('logout/', user_views.logout, name='logout'),
     path('set_language/', set_language, name='set_language'),
-    
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'recipes.views.unknown'

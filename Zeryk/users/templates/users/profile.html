@@ -1,10 +1,12 @@
 {% extends "recipes/box.html" %}
+{% load static %}
 <!-- -->
 {% load crispy_forms_tags %} {% load i18n %} {% load static %}
 
 <!-- -->
 {% block content %}
 <div class="container">
+  <img src="{{ user.userprofile.pfp.url }}" alt="{{ user.username }}" />
   <h1>{{ user.username }}</h1>
   <h2>{% trans "Your recipes:" %}</h2>
   <ul>

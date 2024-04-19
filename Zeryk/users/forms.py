@@ -22,6 +22,11 @@ class UserRegisterForm(UserCreationForm):
                                                                   'data-toggle': 'password',
                                                                   'id': 'password',
                                                                   }))
+    pfp = forms.ImageField(required=False,
+                           widget=forms.FileInput(attrs={'class': 'form-control',
+                                                         'id': 'pfp',
+                                                        }))
+    
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'password1', 'password2', 'pfp']

@@ -10,6 +10,7 @@
     <fieldset class="form-group">
       <legend class="border-bottom mb-4">{% trans "Sign Up" %}!</legend>
       {{ form|crispy }}
+      <img id="pfp-prev" src="#" alt="Profile Picture" style="display: none;"/>
     </fieldset>
     <div class="form-group py-3">
       <input class="btn btn-outline-primary" type="submit" value="Sign Up" />
@@ -20,5 +21,12 @@
   </div>
 </div>
 
+<script>
+  document.getElementById('pfp').addEventListener('change', function(event) {
+    var output = document.getElementById('pfp-prev');
+    output.style.display = 'block';
+    output.src = URL.createObjectURL(event.target.files[0]);
+  });
+</script>
 <!-- -->
 {% endblock content %}
