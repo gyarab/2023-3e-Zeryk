@@ -51,15 +51,15 @@
                   {% get_current_language as LANGUAGE_CODE %}
                   {% if LANGUAGE_CODE == 'en' %}
                     <img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English
-                  {% elif LANGUAGE_CODE == 'cz' %}
-                    <img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština
+                  {% elif LANGUAGE_CODE == 'cs' %}
+                    <img src="{% static 'flag/cs.png' %}" alt="cs" class="flag-icon"> Čeština
                   {% endif %}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="languageDropdown">
-                  {% if LANGUAGE_CODE == 'cz' %}
+                  {% if LANGUAGE_CODE == 'cs' %}
                     <a class="dropdown-item" href="#" onclick="setLanguage('en')"><img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"> English</a>
                   {% elif LANGUAGE_CODE == 'en' %}
-                    <a class="dropdown-item" href="#" onclick="setLanguage('cz')"><img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"> Čeština</a>
+                    <a class="dropdown-item" href="#" onclick="setLanguage('cs')"><img src="{% static 'flag/cs.png' %}" alt="cs" class="flag-icon"> Čeština</a>
                   {% endif %}
                 </div>
               </div>
@@ -114,15 +114,15 @@
                     {% get_current_language as LANGUAGE_CODE %}
                     {% if LANGUAGE_CODE == 'en' %}
                       <img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon">
-                    {% elif LANGUAGE_CODE == 'cz' %}
-                      <img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon">
+                    {% elif LANGUAGE_CODE == 'cs' %}
+                      <img src="{% static 'flag/cs.png' %}" alt="cs" class="flag-icon">
                     {% endif %}
                   </button>
                   <div class="dropdown-menu" aria-labelledby="languageDropdownCollapsed">
-                    {% if LANGUAGE_CODE == 'cz' %}
+                    {% if LANGUAGE_CODE == 'cs' %}
                       <a class="dropdown-item" href="#" onclick="setLanguage('en')"><img src="{% static 'flag/en.png' %}" alt="EN" class="flag-icon"></a>
                     {% elif LANGUAGE_CODE == 'en' %}
-                      <a class="dropdown-item" href="#" onclick="setLanguage('cz')"><img src="{% static 'flag/cz.png' %}" alt="CZ" class="flag-icon"></a>
+                      <a class="dropdown-item" href="#" onclick="setLanguage('cs')"><img src="{% static 'flag/cs.png' %}" alt="cs" class="flag-icon"></a>
                     {% endif %}
                   </div>
                 </div>

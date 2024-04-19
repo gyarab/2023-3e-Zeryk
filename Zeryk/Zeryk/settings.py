@@ -113,18 +113,17 @@ AUTH_PASSWORD_VALIDATORS = [
 TIME_ZONE = 'CET'
 LANGUAGE_CODE = 'en'
 
-#USE_L10N = True
-
 LANGUAGES = [
     ('en', _('English')),
-    ('cz', _('Czech')),
+    ('cs', _('Czech')),
 ]
 
 LOCALE_PATHS = [
-    BASE_DIR / 'locale/',
+    'locale/',
 ]
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 #MODELTRANSLATION_DEFAULT_LANGUAGE = 'en' 
