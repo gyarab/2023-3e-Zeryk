@@ -4,6 +4,9 @@
 <div class="container">
   <h1>{{ object.title }}</h1>
   <div class="card my-4">
+    {% if object.photo %}
+      <img class="card-img-top img-fluid" src="{{ object.photo.url }}" alt="{{ object.title }}" />
+    {% endif %}
     <div class="card-body">
       <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
       <h5 class="card-title">{{ object.title }}</h5>
@@ -16,14 +19,6 @@
       </ul>
       {% else %}
       <p>{% trans "No ingredients added yet." %}</p>
-      {% endif %}
-
-      <!-- Add the following lines to display the image -->
-      {% if object.image %}
-      <img
-        src="{{ object.image.url }}"
-        alt="{{ object.title }}"
-        class="img-fluid" />
       {% endif %}
 
       <p class="card-text">

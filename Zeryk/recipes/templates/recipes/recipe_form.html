@@ -3,10 +3,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     <fieldset class="form-group">
       <legend class="border-bottom mb-4">{% trans "Add Recipe" %}</legend>
     </fieldset>
+
+    <img id="photo-prev" src="#" alt="Recipe Photo" style="display: none; max-width: 600px; max-height: fit-content;"/>
+    
     {% csrf_token %}
     {{ form.media }}
     {{ form.as_p }}
@@ -30,4 +33,12 @@
     <a class="text-muted" href="{% url 'recipes-home' %}">{% trans "Cancel" %}</a>
   </div>
 </div>
+
+<script>
+  document.getElementById('photo').addEventListener('change', function(event) {
+    var output = document.getElementById('photo-prev');
+    output.style.display = 'block';
+    output.src = URL.createObjectURL(event.target.files[0]);
+  });
+</script>
 {% endblock content %}

@@ -1,7 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField 
+from ckeditor.fields import RichTextField
+from django.utils.translation import gettext_lazy as _
 
 #TODO dodelat pridat ingridients, pole, vytvareni pole, databaze, nejak spojit
 
@@ -15,17 +16,18 @@ class Ingredient(models.Model):
     return self.name
 
 class Recipe(models.Model):
-  title = models.CharField(max_length=100)
-  description = RichTextField(blank=True, null=True)
+  title = models.CharField(max_length=100, verbose_name=_('title'))
+  description = RichTextField(blank=True, null=True, verbose_name=_('description'), config_name='default')
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  ingredients = models.ManyToManyField(Ingredient, related_name='recipes')
+  ingredients = models.ManyToManyField(Ingredient, related_name='recipes', verbose_name=_('ingredients'))
   likes = models.ManyToManyField(User, related_name='blog_posts')
   photo = models.ImageField(
         upload_to='recipes',
         null=True,
         blank=True,
+        verbose_name=_('photo'),
     )
 
   class Meta:

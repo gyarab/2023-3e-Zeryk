@@ -97,6 +97,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.photo = self.request.FILES.get('photo')
         self.object.author = self.request.user
         self.object.save()
         new_ingredient_name = self.request.GET.get('new_ingredient')

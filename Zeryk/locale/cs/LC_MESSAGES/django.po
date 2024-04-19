@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 14:51+0200\n"
+"POT-Creation-Date: 2024-04-19 20:41+0200\n"
 "PO-Revision-Date: 2024-04-19 15:20+0200\n"
 "Last-Translator: MATEJ KRATOCHVIL <matej.kratochvil@student.gyarab.cz>\n"
 "Language-Team: TIM EISELT <timon.eiselt@student.gyarab.cz>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
 #: .\Zeryk\settings.py:117
 msgid "English"
 msgstr "Angličtina"
@@ -25,6 +26,24 @@ msgstr "Angličtina"
 #: .\Zeryk\settings.py:118
 msgid "Czech"
 msgstr "Čeština"
+
+#: .\recipes\models.py:19
+msgid "title"
+msgstr "Název"
+
+#: .\recipes\models.py:20
+msgid "description"
+msgstr "Popis"
+
+#: .\recipes\models.py:24
+#, fuzzy
+#| msgid "Ingredients:"
+msgid "ingredients"
+msgstr "Ingredience:"
+
+#: .\recipes\models.py:30
+msgid "photo"
+msgstr "Obrázek"
 
 #: .\recipes\templates\recipes\404.html:10
 msgid "Page not found"
@@ -45,8 +64,8 @@ msgid ""
 "Are you passionate about cooking and love sharing your culinary creations "
 "with others? Or perhaps you're in search of inspiration for your next meal?"
 msgstr ""
-"Jsi zapálený kuchař a rád sdílíš své kulinářské výtvory "
-"s ostatními? Nebo hledáš inspiraci pro své další jídlo?"
+"Jsi zapálený kuchař a rád sdílíš své kulinářské výtvory s ostatními? Nebo "
+"hledáš inspiraci pro své další jídlo?"
 
 #: .\recipes\templates\recipes\about.html:10
 msgid ""
@@ -62,9 +81,9 @@ msgid ""
 "offers a seamless experience for sharing your favorite recipes or finding "
 "new ones to try."
 msgstr ""
-"Ať už jste ostřílený kuchař nebo nováček v kuchyni, naše platforma "
-"nabízí bezproblémové sdílení vašich oblíbených receptů nebo hledání "
-"nových k vyzkoušení."
+"Ať už jste ostřílený kuchař nebo nováček v kuchyni, naše platforma nabízí "
+"bezproblémové sdílení vašich oblíbených receptů nebo hledání nových k "
+"vyzkoušení."
 
 #: .\recipes\templates\recipes\about.html:12
 msgid "Key Features:"
@@ -80,7 +99,9 @@ msgstr "Prozkoumejte rozsáhlou sbírku receptů z různých kuchyní."
 
 #: .\recipes\templates\recipes\about.html:16
 msgid "Find recipes using specific ingredients, recipe names, or cooking times"
-msgstr "Vyhledávání receptů s použitím konkrétních přísad, názvů receptů nebo doby vaření"
+msgstr ""
+"Vyhledávání receptů s použitím konkrétních přísad, názvů receptů nebo doby "
+"vaření"
 
 #: .\recipes\templates\recipes\about.html:17
 msgid "Connect with fellow foodies and exchange cooking tips"
@@ -91,8 +112,8 @@ msgid ""
 "Join us today and embark on a culinary journey filled with creativity, "
 "flavor, and community!"
 msgstr ""
-"Připojte se k nám ještě dnes a vydejte se na kulinářskou cestu plnou kreativity, "
-"chuti a společenství!"
+"Připojte se k nám ještě dnes a vydejte se na kulinářskou cestu plnou "
+"kreativity, chuti a společenství!"
 
 #: .\recipes\templates\recipes\add_comment.html:4
 msgid "Comment"
@@ -100,7 +121,7 @@ msgstr "Komentář"
 
 #: .\recipes\templates\recipes\add_comment.html:8
 #: .\recipes\templates\recipes\add_comment.html:14
-#: .\recipes\templates\recipes\recipe_detail.html:93
+#: .\recipes\templates\recipes\recipe_detail.html:88
 msgid "Add Comment"
 msgstr "Přidat Komentář"
 
@@ -122,7 +143,7 @@ msgid "My Profile"
 msgstr "Můj Profil"
 
 #: .\recipes\templates\recipes\box.html:33
-#: .\recipes\templates\recipes\recipe_detail.html:78
+#: .\recipes\templates\recipes\recipe_detail.html:73
 #: .\users\templates\users\login.html:15
 msgid "Login"
 msgstr "Přihlásit se"
@@ -139,28 +160,28 @@ msgstr "Hledat:"
 msgid "Search"
 msgstr "Hledat"
 
-#: .\recipes\templates\recipes\home.html:19
-#: .\recipes\templates\recipes\recipe_detail.html:11
-#: .\recipes\templates\recipes\recipe_form.html:15
+#: .\recipes\templates\recipes\home.html:22
+#: .\recipes\templates\recipes\recipe_detail.html:14
+#: .\recipes\templates\recipes\recipe_form.html:18
 #: .\recipes\templates\recipes\search.html:15
 #: .\users\templates\users\profile.html:17
 msgid "Ingredients:"
 msgstr "Ingredience:"
 
-#: .\recipes\templates\recipes\home.html:26
-#: .\recipes\templates\recipes\recipe_detail.html:18
+#: .\recipes\templates\recipes\home.html:29
+#: .\recipes\templates\recipes\recipe_detail.html:21
 #: .\recipes\templates\recipes\search.html:22
 msgid "No ingredients added yet."
 msgstr "Zatím nebyly přidány žádné ingredience."
 
-#: .\recipes\templates\recipes\home.html:29
-#: .\recipes\templates\recipes\recipe_detail.html:30
+#: .\recipes\templates\recipes\home.html:32
+#: .\recipes\templates\recipes\recipe_detail.html:25
 #: .\recipes\templates\recipes\search.html:25
 #: .\users\templates\users\profile.html:24
 msgid "Instructions:"
 msgstr "Instrukce:"
 
-#: .\recipes\templates\recipes\home.html:33
+#: .\recipes\templates\recipes\home.html:36
 #: .\recipes\templates\recipes\search.html:29
 #: .\users\templates\users\profile.html:32
 msgid "View Recipe"
@@ -187,43 +208,43 @@ msgstr "Smazat Příspěvek!"
 msgid "You're not allowed here! (and you know it...)"
 msgstr "Tady nemáš co dělat! (a ty to víš...)"
 
-#: .\recipes\templates\recipes\recipe_detail.html:40
+#: .\recipes\templates\recipes\recipe_detail.html:35
 msgid "Edit"
 msgstr "Upravit"
 
-#: .\recipes\templates\recipes\recipe_detail.html:45
+#: .\recipes\templates\recipes\recipe_detail.html:40
 msgid "Delete"
 msgstr "Smazat"
 
-#: .\recipes\templates\recipes\recipe_detail.html:62
+#: .\recipes\templates\recipes\recipe_detail.html:57
 msgid "Unlike"
 msgstr "Zrušit líbí se"
 
-#: .\recipes\templates\recipes\recipe_detail.html:73
+#: .\recipes\templates\recipes\recipe_detail.html:68
 msgid "Like"
 msgstr "Líbí se"
 
-#: .\recipes\templates\recipes\recipe_detail.html:81
+#: .\recipes\templates\recipes\recipe_detail.html:76
 msgid "Likes"
 msgstr "Líbí se"
 
-#: .\recipes\templates\recipes\recipe_detail.html:85
+#: .\recipes\templates\recipes\recipe_detail.html:80
 msgid "Comments"
 msgstr "Komentáře"
 
-#: .\recipes\templates\recipes\recipe_detail.html:87
+#: .\recipes\templates\recipes\recipe_detail.html:82
 msgid "No Comments Yet..."
 msgstr "Zatím Žádné Komentáře..."
 
-#: .\recipes\templates\recipes\recipe_detail.html:89
+#: .\recipes\templates\recipes\recipe_detail.html:84
 msgid "Add one"
 msgstr "Přidej jeden"
 
-#: .\recipes\templates\recipes\recipe_form.html:26
+#: .\recipes\templates\recipes\recipe_form.html:29
 msgid "Save Recipe"
 msgstr "Uložit Recept"
 
-#: .\recipes\templates\recipes\recipe_form.html:30
+#: .\recipes\templates\recipes\recipe_form.html:33
 msgid "Cancel"
 msgstr "Zrušit"
 

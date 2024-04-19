@@ -11,6 +11,9 @@
 {% for recipe in recipes %}
 <div class="container">
   <div class="card my-4" style="width: 60rem;">
+    {% if recipe.photo %}
+      <img class="card-img-top img-fluid" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}" />
+    {% endif %}
     <div class="card-body">
       <h5 class="card-title">{{ recipe.title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ recipe.author }}</h6>
