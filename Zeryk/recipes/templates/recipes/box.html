@@ -23,6 +23,10 @@
                 <i class="fas fa-user fa-lg"></i>
                 <span class="d-block">{% trans "My Profile" %}</span>
             </a>
+            <a class="d-block mb-3 no-style" href="{% url 'user-settings' %}">
+                <i class="fas fa-cog fa-lg"></i>
+                <span class="d-block">{% trans "Settings" %}</span>
+            </a>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button class="btn btn-link no-style" type="submit"><i class="fas fa-sign-out-alt fa-lg"></i></button>
@@ -87,6 +91,9 @@
           {% if user.is_authenticated %}
           <li class="nav-item">
               <a class="nav-link" href="{% url 'user-profile' %}"><i class="fas fa-user fa-lg"></i></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'user-settings' %}"><i class="fas fa-cog fa-lg"></i></a>
           </li>
           <li class="nav-item">
               <form method="post" action="{% url 'logout' %}">
