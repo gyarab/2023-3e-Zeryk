@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import gettext_lazy as _
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -9,7 +10,8 @@ class UserProfile(models.Model):
         upload_to='pfp',
         null=True,
         blank=True,
-        default='pfp/default.png'
+        default='pfp/default.png',
+        verbose_name=_('pfp'),
     )
 
     def __str__(self):

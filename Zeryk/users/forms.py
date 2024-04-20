@@ -43,6 +43,20 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['pfp']
 
 class PasswordChangeForm(forms.ModelForm):
+    password1 = forms.CharField(max_length=50,
+                                required=True,
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Password',
+                                                                  'class': 'form-control',
+                                                                  'data-toggle': 'password',
+                                                                  'id': 'password',
+                                                                  }))
+    password2 = forms.CharField(max_length=50,
+                                required=True,
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
+                                                                  'class': 'form-control',
+                                                                  'data-toggle': 'password',
+                                                                  'id': 'password',
+                                                                  }))
     class Meta:
         model = User
-        fields = ['password']
+        fields = ['password1', 'password2']

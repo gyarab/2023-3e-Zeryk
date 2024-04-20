@@ -1,4 +1,4 @@
-{% extends "recipes/base.html" %}
+{% extends "recipes/box.html" %}
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
@@ -18,17 +18,7 @@
           </form>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-header">{% trans "Change Password" %}</div>
-        <div class="card-body">
-          <form method="POST">
-            {% csrf_token %}
-            {{ password_form|crispy }}
-            <button type="submit" class="btn btn-primary">{% trans "Change Password" %}</button>
-          </form>
-        </div>
-      </div>
+      <a href="{% url 'user-change-password' %}" class="btn btn-secondary">{% trans "Change Password" %}</a>
     </div>
   </div>
 </div>
