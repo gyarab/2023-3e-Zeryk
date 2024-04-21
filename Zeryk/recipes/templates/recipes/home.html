@@ -2,12 +2,13 @@
 {% load i18n %}
 <!-- -->
 {% block content %}
-<form method="get" action="{% url 'search_recipes' %}">
-  {% csrf_token %}
-  <label for="ingredients">{% trans "Search:" %}</label>
-  <input type="text" id="ingredients" name="ingredients">
-  <button type="submit">{% trans "Search" %}</button>
-</form>
+<div class="search-form">
+  <form method="get" action="{% url 'search_recipes' %}">
+    {% csrf_token %}
+    <input type="text" id="ingredients" name="ingredients" placeholder="{% trans "Search" %}">
+    <button type="submit"><i class="fas fa-search fa-lg"></i></button>
+  </form>
+</div>
 {% for recipe in recipes %}
 <div class="container">
   <div class="card my-4" style="width: 60rem;">

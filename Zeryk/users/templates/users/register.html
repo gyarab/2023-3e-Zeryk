@@ -2,29 +2,35 @@
 <!-- -->
 {% load crispy_forms_tags %}
 {% load i18n %}
+{% load static %}
 <!-- -->
 {% block content %}
 <div class="container">
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">{% trans "Sign Up" %}!</legend>
-      {{ form|crispy }}
-      <img id="pfp-prev" src="#" alt="Profile Picture" style="display: none;"/>
-    </fieldset>
-    <div class="form-group py-3">
-      <input class="btn btn-outline-primary" type="submit" value="Sign Up" />
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 text-center">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">{% trans "Sign Up" %}!</legend>
+          {{ form|crispy }}
+        </fieldset>
+        <div class="form-group py-3">
+          <input class="btn btn-primary" type="submit" value="Sign Up" />
+        </div>
+        <div class="border-top pt-3">
+          <a class="text-muted" href="{% url 'user-login' %}">{% trans "Already have an account? Log in." %}</a>
+        </div>
+      </form>
     </div>
-  </form>
-  <div class="border-top pt-3">
-    <a class="text-muted" href="{% url 'user-login' %}">{% trans "Already have an account? Log in." %}</a>
+    <div class="col-md-4">
+      <img id="pfp-prev" src="{% get_media_prefix %}pfp/default.png" alt="Profile Picture"/>
+    </div>
   </div>
 </div>
 
 <script>
   document.getElementById('pfp').addEventListener('change', function(event) {
     var output = document.getElementById('pfp-prev');
-    output.style.display = 'block';
     output.src = URL.createObjectURL(event.target.files[0]);
   });
 </script>

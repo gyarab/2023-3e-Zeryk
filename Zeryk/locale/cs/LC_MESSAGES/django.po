@@ -73,7 +73,7 @@ msgid ""
 "you to connect, share, and discover delicious recipes from around the world."
 msgstr ""
 "Nemusíš hledat dál! Naše sociální síť je přímo pro nadšence do jídla, jako "
-"jsi, aby se mohli spojit, sdílet a objevovat výborné recepty z celého světa."
+"jsi ty, aby se mohli spojit, sdílet a objevovat výborné recepty z celého světa."
 
 #: .\recipes\templates\recipes\about.html:11
 msgid ""
