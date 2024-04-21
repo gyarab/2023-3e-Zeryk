@@ -8,7 +8,7 @@
       <img class="card-img-top img-fluid" src="{{ object.photo.url }}" alt="{{ object.title }}" />
     {% endif %}
     <div class="card-body">
-      <img class="pfp" src="{{ object.author.userprofile.pfp.url }}" alt="{{ object.author }}" />
+      <!--<img class="pfp" src="{{ object.author.userprofile.pfp.url }}" alt="{{ object.author }}" />-->
       <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
       <h5 class="card-title">{{ object.title }}</h5>
       {% if object.ingredients.all|length %}

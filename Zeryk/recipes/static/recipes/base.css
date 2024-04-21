@@ -31,6 +31,7 @@ body {
   height: 95vh;
   margin-bottom: 1vw;
   width: 10vw;
+  background: url(https://cdn.discordapp.com/attachments/882928872428032070/1231624389439521008/zeryk-menu-bg.png?ex=66267f18&is=66252d98&hm=62025af3a47023d9fc00e92f475c8676ddb71d3fc7a35ea165f467b5c732e179&);
   background-color: var(--color-accent);
   border-radius: 0.5vw;
   border: 1px solid var(--color-dark);
@@ -40,6 +41,18 @@ body {
   align-items: center;
   justify-items: center;
   color: var(--color-secondary);
+}
+
+.navigation-box a:hover {
+  color: var(--color-dark);
+}
+
+.navigation-box button:hover {
+  color: var(--color-dark);
+}
+
+.navigation-box a {
+  backdrop-filter: blur(2px);
 }
 
 .collapse-wrapper {
@@ -129,7 +142,7 @@ body {
   justify-content: space-between;
   padding: 20px;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid var(--color-dark);
   box-sizing: border-box;
 }
