@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from django.utils.translation import gettext_lazy as _
 
-#TODO dodelat pridat ingridients, pole, vytvareni pole, databaze, nejak spojit
 
+#definuje jednoduchou entitu ingredience s jedním polem name, které reprezentuje název ingredience.
 class Ingredient(models.Model):
   name = models.CharField(max_length=100)
 
@@ -15,6 +15,7 @@ class Ingredient(models.Model):
   def __str__(self):
     return self.name
 
+#definuje databázovou tabulku pro uchovávání informací o receptech v aplikaci. 
 class Recipe(models.Model):
   title = models.CharField(max_length=100, verbose_name=_('title'))
   description = RichTextField(blank=True, null=True, verbose_name=_('description'), config_name='default')
@@ -42,7 +43,7 @@ class Recipe(models.Model):
   def __str__(self):
     return self.title
   
-
+#reprezentuje komentář k receptu.
 class Comment(models.Model):
   post = models.ForeignKey(Recipe, related_name="comments", on_delete=models.CASCADE)
   name = models.CharField(max_length=255)

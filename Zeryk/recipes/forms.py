@@ -1,11 +1,13 @@
 from django import forms
 from .models import Ingredient, Comment, Recipe
 
+#formulář pro ingredience
 class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = ['name']
 
+#definuje formulář pro vytváření a úpravu instancí modelu Comment
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -16,6 +18,7 @@ class CommentForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
+#definuje formulář pro vytváření a úpravu receptů
 class RecipeForm(forms.ModelForm):
     ingredients = forms.ModelMultipleChoiceField(
         queryset=Ingredient.objects.all(),
@@ -29,5 +32,6 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = ['title', 'description', 'ingredients', 'photo']
     
+#umožňuje uživateli zadat textový řetězec (seznam ingrediencí) a použít ho pro vyhledávání receptů.
 class RecipeSearch(forms.Form):
     ingredients = forms.CharField(label ='Ingridients', max_length=100)

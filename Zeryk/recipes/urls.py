@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import like, AddCommentView
+
+#definice URL adres
 urlpatterns = [
     path('', views.RecipeListView.as_view(), name="recipes-home"),
     path('recipe/<int:pk>', views.RecipeDetailView.as_view(), name="recipes-detail"),
