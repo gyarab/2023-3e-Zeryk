@@ -96,7 +96,7 @@ body {
   }
 
   .collapse.flag-icon {
-    height: 2vw;
+    height: 4vw;
   }
 
   .dropdown-menu .flag-icon {
@@ -149,8 +149,8 @@ body {
 }
 
 .card img {
-  height: 100%;
-  width: auto;
+  max-height: 100%;
+  max-width: 100%;
   flex: 0 0 auto;
   margin-left: 20px;
 }
