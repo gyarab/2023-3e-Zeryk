@@ -14,6 +14,7 @@
             {% csrf_token %}
             {{ user_form|crispy }}
             {{ profile_form|crispy }}
+            <br>
             <button type="submit" class="btn btn-primary">{% trans "Update" %}</button>
           </form>
         </div>

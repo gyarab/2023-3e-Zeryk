@@ -251,7 +251,7 @@ body {
   border: 1px solid var(--color-secondary);
 }
 
-
+/* ------------------------BACKGROUND------------------------ */
 .background-container {
   position: relative;
   overflow: hidden;
