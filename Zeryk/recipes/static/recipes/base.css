@@ -261,6 +261,7 @@ body {
   width: 5vw;
   height: 5vw;
   border: 1px solid var(--color-secondary);
+  margin-top: 10vh;
 }
 
 .card.settings {

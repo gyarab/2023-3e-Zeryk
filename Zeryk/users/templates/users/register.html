@@ -5,24 +5,26 @@
 
 {% block content %}
 <div class="background-container">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-md-6 text-center">
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group">
-          <legend class="border-bottom mb-4">{% trans "Sign Up" %}!</legend>
-          {{ form|crispy }}
-        </fieldset>
-        <div class="form-group py-3">
-          <input class="btn btn-primary" type="submit" value="Sign Up" />
-        </div>
-        <div class="border-top pt-3">
-          <a class="text-muted" href="{% url 'user-login' %}">{% trans "Already have an account? Log in." %}</a>
-        </div>    
-        <div class="col-md-4">
-          <img id="pfp-prev" src="{% get_media_prefix %}pfp/default.png" alt="Profile Picture"/>
-        </div>
-      </form>
+  <div class="row align-items-center justify-content-start">
+    <div class="col-md-8 d-flex">
+      <div class="col-md-4">
+        <img id="pfp-prev" src="{% get_media_prefix %}pfp/default.png" alt="Profile Picture"/>
+      </div>
+      <div class="col-md-8">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{% trans "Sign Up" %}!</legend>
+            {{ form|crispy }}
+          </fieldset>
+          <div class="form-group py-3">
+            <input class="btn btn-primary" type="submit" value="Sign Up" />
+          </div>
+          <div class="border-top pt-3">
+            <a class="text-muted" href="{% url 'user-login' %}">{% trans "Already have an account? Log in." %}</a>
+          </div>    
+        </form>
+      </div>
     </div>
   </div>
 </div>
