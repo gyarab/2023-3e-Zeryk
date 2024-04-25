@@ -1,14 +1,20 @@
 {% extends "recipes/box.html" %}
-{% load static %}
 <!-- -->
-{% load crispy_forms_tags %} {% load i18n %} {% load static %}
+{% load crispy_forms_tags %} 
+{% load i18n %}
+{% load static %}
 
 <!-- -->
 {% block content %}
 <div class="background-container">
   <img class="pfp" src="{{ user.userprofile.pfp.url }}" alt="{{ user.userprofile.user.username }}" />
   <h1>{{ user.username }}</h1>
-  <h2>{% trans "Your recipes:" %}</h2>
+  {% if not recipes %}
+    <h2>{% trans "No recipes yet." %}</h2>
+    <a class="btn btn-primary" href="{% url 'recipes-create' %}">{% trans "Want to add one?" %}</a>
+  {% else %}
+    <h2>{% trans "Your recipes:" %}</h2>
+  {% endif %}
   {% for recipe in recipes %}
   <div class="container">
     <div class="card my-4" style="width: 60rem;">
@@ -30,7 +36,8 @@
           <p>{% trans "No ingredients added yet." %}</p>
         {% endif %}
   
-        <h6>{% trans "Instructions:" %}</h6><p class="card-text"> {{ recipe.description | safe }}</p>
+        <h6>{% trans "Instructions:" %}</h6>
+        <p class="card-text"> {{ recipe.description | safe }}</p>
         <h6 class="card-subtitle mb-2 text-muted">
           {{ recipe.updated_at|date:"F d, Y" }}
         </h6>

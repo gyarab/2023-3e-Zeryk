@@ -14,6 +14,8 @@ class UserProfile(models.Model):
         verbose_name=_('pfp'),
     )
 
+    def get_default_pfp(self):
+        return 'pfp/default.png'
     def __str__(self):
         return self.user.username
 

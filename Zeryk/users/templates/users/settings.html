@@ -7,19 +7,20 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card mb-4">
-        <div class="card-header">{% trans "Settings" %}</div>
-        <div class="card-body">
-          <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ user_form|crispy }}
-            {{ profile_form|crispy }}
-            <br>
-            <button type="submit" class="btn btn-primary">{% trans "Update" %}</button>
-          </form>
-        </div>
+      <div class="card mb-4 settings">
+        <div class="card-header settings">{% trans "Settings" %}
+          <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ user_form|crispy }}
+              {{ profile_form|crispy }}
+              <br>
+              <button type="submit" class="btn btn-primary">{% trans "Update" %}</button>
+            </form>
+          </div>
+        <a href="{% url 'user-change-password' %}" class="btn btn-secondary">{% trans "Change Password" %}</a>
       </div>
-      <a href="{% url 'user-change-password' %}" class="btn btn-secondary">{% trans "Change Password" %}</a>
+      </div>
     </div>
   </div>
 </div>

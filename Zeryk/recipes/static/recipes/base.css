@@ -32,7 +32,7 @@ body {
   height: 95vh;
   margin-bottom: 1vw;
   width: 10vw;
-  background: url(https://.discordapp.com/attachments/882928872428032070/1231624389439521008/zeryk-menu-bg.png?ex=66267f18&is=66252d98&hm=62025af3a47023d9fc00e92f475c8676ddb71d3fc7a35ea165f467b5c732e179&);
+  background: url(menu.png);
   background-color: var(--color-accent);
   border-radius: 0.5vw;
   border: 1px solid var(--color-dark);
@@ -153,6 +153,7 @@ body {
   width: auto;
   flex: 0 0 auto;
   margin-left: 20px;
+  max-width: 20vw;
 }
 
 .card:hover {
@@ -218,6 +219,26 @@ body {
   background-color: var(--color-accent);
 }
 
+.recipe-form {
+  background-color: white;
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#photo-prev {
+  max-width: 400px; 
+  max-height: fit-content;
+  border-radius: 10px;
+  margin: 10px;
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 @media (max-width: 768px) {
   .search-form {
@@ -233,7 +254,7 @@ body {
   }
 }
 
-/* ------------------------REGISTER + LOGIN------------------------ */
+/* ------------------------REGISTER + LOGIN + SETTINGS------------------------ */
 
 #pfp-prev {
   border-radius: 50%;
@@ -242,6 +263,16 @@ body {
   border: 1px solid var(--color-secondary);
 }
 
+.card.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+}
+
+.card-header.settings {
+  width: 100%;
+}
 /* ------------------------PROFIL------------------------ */
 
 .pfp {

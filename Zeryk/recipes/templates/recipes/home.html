@@ -32,7 +32,7 @@
 
       <h6>{% trans "Instructions:" %}</h6><p class="card-text"> {{ recipe.description | safe }}</p>
       <h6 class="card-subtitle mb-2 text-muted">
-        {{ recipe.updated_at|date:"F d, Y" }}
+        {{ recipe.updated_at|date:_("DATE_FORMAT") }}
       </h6>
       <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link no-style">{% trans "View Recipe" %}</a>
     </div>

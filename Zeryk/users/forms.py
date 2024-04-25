@@ -32,6 +32,13 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'password1', 'password2', 'pfp']
 
+    def clean_pfp(self):
+        pfp = self.cleaned_data.get('pfp')
+        if not pfp:
+            if self.instance.pk:
+                return self.instance.userprofile.get_default_pfp()
+        return pfp
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -41,6 +48,12 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['pfp']
+
+    def clean_pfp(self):
+        pfp = self.cleaned_data.get('pfp')
+        if not pfp:
+            return self.instance.get_default_pfp()
+        return pfp
 
 class PasswordChangeForm(forms.ModelForm):
     password1 = forms.CharField(max_length=50,
