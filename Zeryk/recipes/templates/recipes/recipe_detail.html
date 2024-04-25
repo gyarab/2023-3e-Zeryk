@@ -70,10 +70,8 @@
     </button>
 
     {% endif %} {% else %}
-    <small
-      ><a href="{% url 'user-login' %}">{% trans "Login" %}</a> {% trans "to like"
-      %}</small
-    >
+    <small>
+      <a href="{% url 'user-login' %}">{% trans "Login" %}</a> {% trans "to like"%}</small>
     {% endif %} - {{ total_likes }} {% trans "Likes" %}
   </form>
 

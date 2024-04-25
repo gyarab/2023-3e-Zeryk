@@ -298,7 +298,7 @@ msgstr "Registrovat se"
 
 #: .\users\templates\users\register.html:21
 msgid "Already have an account? Log in."
-msgstr "Již máte účet? Přihlašte se."
+msgstr "Již máte účet? Přihlaste se."
 
 #: .\users\templates\users\settings.html:17
 msgid "Update"

@@ -1,9 +1,8 @@
 {% extends "recipes/base.html" %}
-<!-- -->
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% load static %}
-<!-- -->
+
 {% block content %}
 <div class="background-container">
   <div class="row justify-content-center align-items-center">
@@ -19,11 +18,11 @@
         </div>
         <div class="border-top pt-3">
           <a class="text-muted" href="{% url 'user-login' %}">{% trans "Already have an account? Log in." %}</a>
+        </div>    
+        <div class="col-md-4">
+          <img id="pfp-prev" src="{% get_media_prefix %}pfp/default.png" alt="Profile Picture"/>
         </div>
       </form>
-    </div>
-    <div class="col-md-4">
-      <img id="pfp-prev" src="{% get_media_prefix %}pfp/default.png" alt="Profile Picture"/>
     </div>
   </div>
 </div>
@@ -34,5 +33,4 @@
     output.src = URL.createObjectURL(event.target.files[0]);
   });
 </script>
-<!-- -->
 {% endblock content %}
