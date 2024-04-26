@@ -230,6 +230,15 @@ body {
   flex-direction: column;
 }
 
+.liked-recipes {
+  background-color: white;
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+  padding: 10px;
+  height: 70px;
+  width: 400px;
+}
+
 #photo-prev {
   max-width: 400px;
   max-height: fit-content;

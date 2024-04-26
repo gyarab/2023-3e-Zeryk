@@ -33,8 +33,7 @@ def profile(request):
 
 @login_required
 def liked_recipes(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    liked_recipes = user_profile.liked_recipes.all()
+    liked_recipes = Recipe.objects.filter(likes=request.user)
     return render(request, 'users/liked_recipes.html', {'liked_recipes': liked_recipes})
 
 @login_required
