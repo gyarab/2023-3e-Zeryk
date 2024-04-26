@@ -16,8 +16,34 @@
     cd 2023-3e-Zeryk
     ```
 
-3. Nainstalujte Python dependencies
+3. Vytvořte venv a následně aktivujte
+   
+   ```bash
+    python -m venv venv
+    ```
+   
+    ```bash
+    source ./venv/Scripts/activate
+    ```
+   
+4. Nainstalujte Python dependencies
+
+     ```bash
+     pip install -r requirements.txt
+     ```
+   
+6. Přejděte do složky Žeryk
 
     ```bash
-    pip install -r requirements.txt
+    cd Zeryk
     ```
+   
+8. Spustite server
+
+    ```bash
+    ./manage.py runserver
+    ```
+
+   
+
+   
