@@ -32,6 +32,12 @@ def profile(request):
     return render(request, 'users/profile.html', {'recipes': recipes})
 
 @login_required
+def liked_recipes(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    liked_recipes = user_profile.liked_recipes.all()
+    return render(request, 'users/liked_recipes.html', {'liked_recipes': liked_recipes})
+
+@login_required
 def settings(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)

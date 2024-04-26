@@ -13,7 +13,7 @@
     <h2>{% trans "No recipes yet." %}</h2>
     <a class="btn btn-primary" href="{% url 'recipes-create' %}">{% trans "Want to add one?" %}</a>
   {% else %}
-    <h2>{% trans "Your recipes:" %}</h2>
+    <h2>{% trans "Your recipes:" %}&nbsp&nbsp&nbsp&nbsp<a class="btn btn-primary" href="{% url 'liked_recipes' %}">{% trans "Liked recipes" %}</a></h2>
   {% endif %}
   {% for recipe in recipes %}
   <div class="container">

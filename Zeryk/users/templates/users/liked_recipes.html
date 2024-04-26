@@ -1,0 +1,14 @@
+{% extends "recipes/box.html" %}
+
+{% load crispy_forms_tags %} 
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<h1>My Liked Recipes</h1>
+<ul>
+    {% for recipe in liked_recipes %}
+        <li>{{ recipe.title }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -18,6 +18,7 @@ urlpatterns = i18n_patterns(
     path('profile/', user_views.profile, name="user-profile"),
     path('settings/', user_views.settings, name="user-settings"),
     path('change-password/', user_views.change_password, name="user-change-password"),
+    path('liked-recipes/', user_views.liked_recipes, name='liked_recipes'),
     path('logout/', user_views.logout, name='logout'),
     path('set_language/', set_language, name='set_language'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
