@@ -1,7 +1,7 @@
 :root {
   --color-primary: #ffffff;
   --color-secondary: #444444;
-  --color-tertiary: #37323E;
+  --color-tertiary: #37323e;
   --color-accent: #ffc457;
   --color-dark: #b5873e;
 }
@@ -231,14 +231,13 @@ body {
 }
 
 #photo-prev {
-  max-width: 400px; 
+  max-width: 400px;
   max-height: fit-content;
   border-radius: 10px;
   margin: 10px;
   border: 2px solid var(--color-accent);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 @media (max-width: 768px) {
   .search-form {

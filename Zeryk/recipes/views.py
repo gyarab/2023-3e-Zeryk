@@ -38,6 +38,7 @@ def search_recipes(request):
     return render(request, 'home.html', {'form': form})
 
 #zpracovává akce pro označení receptu jako oblíbený nebo zrušení tohoto označení.
+#https://www.youtube.com/watch?v=PXqRPqDjDgc&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=18
 def like(request, pk):
   post = get_object_or_404(models.Recipe, id=request.POST.get('object_id'))
   liked = False
@@ -130,6 +131,7 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     return self.request.user == recipe.author
 
 #umožňuje zobrazit formulář pro přidání komentáře, zpracovat data z tohoto formuláře a uložit nový komentář do databáze spolu s informacemi o příslušném receptu a uživateli.
+#https://www.youtube.com/watch?v=OuOB9ADT_bo&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=35
 class AddCommentView(CreateView):
     model = models.Comment
     form_class = CommentForm

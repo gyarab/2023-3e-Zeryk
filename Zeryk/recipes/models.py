@@ -18,6 +18,7 @@ class Ingredient(models.Model):
 #definuje databázovou tabulku pro uchovávání informací o receptech v aplikaci. 
 class Recipe(models.Model):
   title = models.CharField(max_length=100, verbose_name=_('title'))
+  #https://www.youtube.com/watch?v=mF5jzSXb1dc&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=21 (richtextfield)
   description = RichTextField(blank=True, null=True, verbose_name=_('description'), config_name='default')
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
@@ -44,6 +45,7 @@ class Recipe(models.Model):
     return self.title
   
 #reprezentuje komentář k receptu.
+#https://www.youtube.com/watch?v=hZrlh4qU4eQ&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=34
 class Comment(models.Model):
   post = models.ForeignKey(Recipe, related_name="comments", on_delete=models.CASCADE)
   name = models.CharField(max_length=255)
