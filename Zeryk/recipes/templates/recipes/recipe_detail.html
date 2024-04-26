@@ -74,9 +74,7 @@
 
     {% endif %} {% else %}
     <small>
-      <a href="{% url 'user-login' %}">{% trans "Login" %}</a> {% trans "to
-      like"%}</small
-    >
+      <a href="{% url 'user-login' %}">{% trans "Login" %}</a>&nbsp{% trans "to like"%}</small>
     {% endif %} - {{ total_likes }} {% trans "Likes" %}
   </form>
 
