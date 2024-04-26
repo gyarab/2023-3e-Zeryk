@@ -8,6 +8,7 @@ from .models import UserProfile
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.utils.translation import gettext_lazy as _
 
+#funkce register, která zpracovává požadavky na registraci nových uživatelů. Přijímá požadavky metodou POST, když je formulář odeslán, a metodou GET, když se poprvé zobrazuje stránka pro registraci.
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST, request.FILES)
@@ -25,17 +26,20 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
+#tato funkce zobrazuje profil uživatele a zobrazuje seznam receptů, které uživatel vytvořil. @login_required znamená, že je přístupný pouze přihlášeným uživatelům.
 @login_required
 def profile(request):
     user = request.user
     recipes = Recipe.objects.filter(author=user)
     return render(request, 'users/profile.html', {'recipes': recipes})
 
+#tato funkce je určena k zobrazení seznamu receptů, které daný uživatel označil jako oblíbené.
 @login_required
 def liked_recipes(request):
     liked_recipes = Recipe.objects.filter(likes=request.user)
     return render(request, 'users/liked_recipes.html', {'liked_recipes': liked_recipes})
 
+#funkce umožňuje uživatelům aktualizovat své účetní informace.
 @login_required
 def settings(request):
     if request.method == 'POST':
@@ -51,6 +55,7 @@ def settings(request):
         profile_form = ProfileUpdateForm(instance=request.user.userprofile)
     return render(request, 'users/settings.html', {'user_form': user_form, 'profile_form': profile_form})
 
+#funkce umožňuje uživatelům změnit své heslo. 
 @login_required
 def change_password(request):
     if request.method == 'POST':
