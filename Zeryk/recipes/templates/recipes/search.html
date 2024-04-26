@@ -1,7 +1,8 @@
 {% extends 'recipes/box.html' %}
 {% load i18n %}
 {% block content %}
-  <h1>{% trans "Search Results" %}:</h1>
+  <div class="recipe-form">
+    <h1>{% trans "Search Results" %}:</h1>
   {% if recipes %}
     <ul>
       {% for recipe in recipes %}

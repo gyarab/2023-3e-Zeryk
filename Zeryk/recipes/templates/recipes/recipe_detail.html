@@ -1,11 +1,14 @@
 {% extends "recipes/box.html" %} {% load i18n %}
 <!-- -->
 {% block content %}
-<div class="background-container">
+<div class="recipe-form">
   <h1>{{ object.title }}</h1>
   <div class="card my-4">
     {% if object.photo %}
-      <img class="card-img-top img-fluid" src="{{ object.photo.url }}" alt="{{ object.title }}" />
+    <img
+      class="card-img-top img-fluid"
+      src="{{ object.photo.url }}"
+      alt="{{ object.title }}" />
     {% endif %}
     <div class="card-body">
       <!--<img class="pfp" src="{{ object.author.userprofile.pfp.url }}" alt="{{ object.author }}" />-->
@@ -71,7 +74,9 @@
 
     {% endif %} {% else %}
     <small>
-      <a href="{% url 'user-login' %}">{% trans "Login" %}</a> {% trans "to like"%}</small>
+      <a href="{% url 'user-login' %}">{% trans "Login" %}</a> {% trans "to
+      like"%}</small
+    >
     {% endif %} - {{ total_likes }} {% trans "Likes" %}
   </form>
 

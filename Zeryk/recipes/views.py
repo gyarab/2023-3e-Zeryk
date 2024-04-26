@@ -66,12 +66,6 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         self.object.photo = self.request.FILES.get('photo')
         self.object.author = self.request.user
         self.object.save()
-        new_ingredient_name = self.request.GET.get('new_ingredient')
-        if new_ingredient_name:
-            ingredient, created = models.Ingredient.objects.get_or_create(name=new_ingredient_name)
-            if created:
-                ingredient.save()
-            self.object.ingredients.add(ingredient)
         return super().form_valid(form)
 
 #umožňuje zobrazit detaily konkrétního receptu včetně informací o počtu lajků.
@@ -104,12 +98,6 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
         self.object.save()
-        new_ingredient_name = self.request.GET.get('new_ingredient')
-        if new_ingredient_name:
-            ingredient, created = models.Ingredient.objects.get_or_create(name=new_ingredient_name)
-            if created:
-                ingredient.save()
-            self.object.ingredients.add(ingredient)
         return super().form_valid(form)
 
     def test_func(self):
